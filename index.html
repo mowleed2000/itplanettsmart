@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Planet | Express Phone, Laptop & Tech Repair London W12</title>
+  <meta name="description" content="IT Planet is Shepherd's Bush London's top rated tech repair center. Express iPhone, Samsung, Google Pixel, iPad, MacBook & Laptop repairs with 12-month warranty.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-info">
+        <span>📍 134 Uxbridge Road, Shepherd's Bush, London W12 8AA</span>
+        <span>📞 <a href="tel:07835393192">07835 393192</a></span>
+        <span>⏰ Mon - Sat: 9:00 AM - 10:00 PM | Sun: 10:00 AM - 8:00 PM</span>
+      </div>
+      <div>
+        <span>🛡️ 12-Month Repair Warranty</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        IT <span>PLANET</span>
+        <span class="logo-badge">REPAIR EXPERTS</span>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+
+      <ul class="nav-menu">
+        <li class="dropdown">
+          <a href="pages/phone-repairs.html" class="nav-link">Phone Repairs ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="pages/all-iphone-models.html">iPhone Repair</a></li>
+            <li><a href="pages/samsung-mobile.html">Samsung Repair</a></li>
+            <li><a href="pages/google-pixel.html">Google Pixel Repair</a></li>
+            <li><a href="pages/phone-repairs.html">All Brands Repair</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="nav-link">Computers & Tablets ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="pages/ipad.html">iPad & Tablet Repair</a></li>
+            <li><a href="pages/laptop-1.html">MacBook & Laptop Repair</a></li>
+            <li><a href="pages/data-recovery.html">Data Recovery</a></li>
+          </ul>
+        </li>
+        <li><a href="pages/watch.html" class="nav-link">Smartwatch</a></li>
+        <li><a href="pages/accessories.html" class="nav-link">Accessories</a></li>
+        <li><a href="pages/our-locations.html" class="nav-link">Store Location</a></li>
+        <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="header-cta">
+        <a href="#" class="btn btn-primary open-booking-modal">Book a Repair</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1>London's Express <span>Tech & Mobile Repair</span> Specialists</h1>
+        <p>Cracked screen? Battery draining fast? Water damage? Visit IT Planet on Uxbridge Road. Same-day repair service with genuine quality parts and 12-month warranty.</p>
+        
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <a href="#quote-section" class="btn btn-primary">Get Instant Quote</a>
+          <a href="pages/our-locations.html" class="btn btn-outline" style="color: white; border-color: white;">Visit Store (W12)</a>
+        </div>
+
+        <div class="hero-badges">
+          <div class="hero-badge-item">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+            <span>Express 30-Min Repairs</span>
+          </div>
+          <div class="hero-badge-item">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+            <span>No Fix, No Fee Guarantee</span>
+          </div>
+          <div class="hero-badge-item">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+            <span>Certified Techs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote Calculator Card -->
+      <div class="quote-card" id="quote-section">
+        <h3>⚡ Get Instant Repair Quote</h3>
+        <p>Select your device and issue for an estimated repair cost:</p>
+        
+        <form id="quote-form">
+          <div class="form-group">
+            <label for="calc-brand">Device Brand</label>
+            <select id="calc-brand" class="form-control" required>
+              <option value="">Select Brand</option>
+              <option value="iphone">Apple iPhone</option>
+              <option value="samsung">Samsung Galaxy</option>
+              <option value="pixel">Google Pixel</option>
+              <option value="ipad">iPad & Tablet</option>
+              <option value="laptop">MacBook & Laptop</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-model">Device Model</label>
+            <select id="calc-model" class="form-control" required>
+              <option value="">Select Model (Choose Brand First)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-issue">Repair Type / Issue</label>
+            <select id="calc-issue" class="form-control" required>
+              <option value="">Select Repair Type</option>
+              <option value="Screen Replacement">Screen Replacement (Cracked Glass / LCD)</option>
+              <option value="Battery Replacement">Battery Replacement (Draining Fast)</option>
+              <option value="Back Glass Repair">Back Glass Replacement</option>
+              <option value="Charging Port Fix">Charging Port Repair</option>
+              <option value="Camera Repair">Camera Lens / Sensor Fix</option>
+              <option value="Water Damage Diagnostic">Water / Liquid Damage Diagnostic</option>
+              <option value="Data Recovery">Data Recovery Service</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Estimated Price</button>
+        </form>
+
+        <div id="quote-result" style="display: none; margin-top: 20px; padding: 15px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; text-align: center;">
+          <p style="font-size: 0.9rem; color: #166534; font-weight: 600; margin: 0;">Estimated Repair Cost:</p>
+          <h2 id="quote-price" style="color: #15803d; font-size: 1.8rem; margin: 5px 0;">£45 - £129</h2>
+          <a href="#" class="btn btn-primary open-booking-modal" style="margin-top: 10px; display: inline-block;">Book Repair Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Device Brands Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Select Your Device</span>
+        <h2 class="section-title">What Device Needs Repairing?</h2>
+        <p class="section-desc">We fix smartphones, tablets, computers, smartwatches, and accessories across all major manufacturers.</p>
+      </div>
+
+      <div class="device-grid">
+        <a href="pages/all-iphone-models.html" class="device-card">
+          <div class="device-icon">📱</div>
+          <h4>Apple iPhone</h4>
+          <p>Screen, Battery, Back Glass</p>
+        </a>
+        <a href="pages/samsung-mobile.html" class="device-card">
+          <div class="device-icon">📲</div>
+          <h4>Samsung Galaxy</h4>
+          <p>S-Series, A-Series, Z Fold</p>
+        </a>
+        <a href="pages/google-pixel.html" class="device-card">
+          <div class="device-icon">🔍</div>
+          <h4>Google Pixel</h4>
+          <p>Pixel 8 Pro, 7a, 6 & more</p>
+        </a>
+        <a href="pages/ipad.html" class="device-card">
+          <div class="device-icon">📟</div>
+          <h4>iPad & Tablet</h4>
+          <p>iPad Pro, Air, Mini, Tab</p>
+        </a>
+        <a href="pages/laptop-1.html" class="device-card">
+          <div class="device-icon">💻</div>
+          <h4>MacBook & Laptop</h4>
+          <p>Screen, Keyboard, Battery</p>
+        </a>
+        <a href="pages/watch.html" class="device-card">
+          <div class="device-icon">⌚</div>
+          <h4>Apple Watch</h4>
+          <p>Glass & Screen Replacement</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section" style="background-color: #ffffff;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Expert Repair Solutions</span>
+        <h2 class="section-title">Popular Repair Services at IT Planet</h2>
+        <p class="section-desc">Every repair is completed by certified hardware engineers using premium grade components.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-header">
+            <div class="service-icon">🖥️</div>
+            <h3>Cracked Screen Repair</h3>
+          </div>
+          <p>Fast screen and touchscreen replacement for shattered glass, touch issues, black displays, or flickering lines.</p>
+          <ul class="service-features">
+            <li>✓ Original & Premium Grade OLED/LCD</li>
+            <li>✓ Express 20-30 Minute Turnaround</li>
+            <li>✓ 12-Month Warranty Included</li>
+          </ul>
+          <a href="pages/phone-repairs.html" class="btn btn-outline" style="width: 100%;">Learn More</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-header">
+            <div class="service-icon">🔋</div>
+            <h3>Battery Replacement</h3>
+          </div>
+          <p>Revive battery life if your device drains quickly, turns off unexpectedly, or swells up.</p>
+          <ul class="service-features">
+            <li>✓ Brand New High-Capacity Cells</li>
+            <li>✓ Full Health Diagnostic Test</li>
+            <li>✓ Fast 15-Minute Replacement</li>
+          </ul>
+          <a href="pages/phone-repairs.html" class="btn btn-outline" style="width: 100%;">Learn More</a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-header">
+            <div class="service-icon">💧</div>
+            <h3>Liquid & Water Damage</h3>
+          </div>
+          <p>Advanced ultrasonic motherboard cleaning and component treatment for liquid-damaged devices.</p>
+          <ul class="service-features">
+            <li>✓ Component Level Diagnostics</li>
+            <li>✓ Data Recovery Priority</li>
+            <li>✓ No Fix, No Charge Policy</li>
+          </ul>
+          <a href="pages/data-recovery.html" class="btn btn-outline" style="width: 100%;">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store Location CTA -->
+  <section class="section">
+    <div class="container hero-grid">
+      <div>
+        <span class="section-subtitle">Walk-In Store Location</span>
+        <h2 class="section-title">Visit IT Planet in Shepherd's Bush, London</h2>
+        <p class="section-desc">Located conveniently on Uxbridge Road, our store offers on-the-spot repair consultations, walk-in services, and device accessories.</p>
+        
+        <div style="margin: 25px 0;">
+          <p><strong>📍 Address:</strong> 134 Uxbridge Road, Shepherd's Bush, London, W12 8AA</p>
+          <p><strong>📞 Phone:</strong> <a href="tel:07835393192">07835 393192</a> / 020 8749 9888</p>
+          <p><strong>📧 Email:</strong> info@itplanet.uk</p>
+          <p><strong>⏰ Hours:</strong> Mon - Sat: 9:00 AM - 10:00 PM | Sun: 10:00 AM - 8:00 PM</p>
+        </div>
+
+        <a href="pages/our-locations.html" class="btn btn-primary">Get Map Directions</a>
+      </div>
+
+      <div style="background: white; padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.332845612345!2d-0.2241!3d51.5042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760e2270921fb1%3A0x868d4f40f09a5b6f!2s134%20Uxbridge%20Rd%2C%20London%20W12%208AA!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk" width="100%" height="320" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Banner Stats -->
+  <section class="trust-banner">
+    <div class="container trust-stats">
+      <div class="stat-item">
+        <h2>15,000+</h2>
+        <p>Tech Repairs Completed</p>
+      </div>
+      <div class="stat-item">
+        <h2>30 Mins</h2>
+        <p>Average Express Turnaround</p>
+      </div>
+      <div class="stat-item">
+        <h2>12 Months</h2>
+        <p>Comprehensive Warranty</p>
+      </div>
+      <div class="stat-item">
+        <h2>4.9 ★★★★★</h2>
+        <p>Customer Satisfaction Rating</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>IT PLANET</h3>
+          <p>IT Planet is London's trusted tech and mobile repair service provider based in Shepherd's Bush. We repair smartphones, tablets, laptops, and smartwatches with precision engineering.</p>
+          <div class="footer-contact-info">
+            <p>📍 134 Uxbridge Road, Shepherd's Bush, London W12 8AA</p>
+            <p>📞 <a href="tel:07835393192" style="color:#cbd5e1;">07835 393192</a></p>
+            <p>📧 info@itplanet.uk</p>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Phone Repairs</h4>
+          <ul class="footer-links">
+            <li><a href="pages/all-iphone-models.html">iPhone Screen Repair</a></li>
+            <li><a href="pages/samsung-mobile.html">Samsung Galaxy Repair</a></li>
+            <li><a href="pages/google-pixel.html">Google Pixel Repair</a></li>
+            <li><a href="pages/phone-repairs.html">Battery Replacement</a></li>
+            <li><a href="pages/phone-repairs.html">Back Glass Repair</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Computers & Tech</h4>
+          <ul class="footer-links">
+            <li><a href="pages/ipad.html">iPad & Tablet Repair</a></li>
+            <li><a href="pages/laptop-1.html">MacBook Screen Fix</a></li>
+            <li><a href="pages/laptop-1.html">Laptop Keyboard Fix</a></li>
+            <li><a href="pages/data-recovery.html">HDD/SSD Data Recovery</a></li>
+            <li><a href="pages/watch.html">Apple Watch Repair</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Company & Help</h4>
+          <ul class="footer-links">
+            <li><a href="pages/about-us1.html">About IT Planet</a></li>
+            <li><a href="pages/our-locations.html">Store Location & Hours</a></li>
+            <li><a href="pages/warranty.html">12-Month Warranty</a></li>
+            <li><a href="pages/business-page.html">B2B Corporate Repairs</a></li>
+            <li><a href="pages/contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 IT Planet. All rights reserved. 134 Uxbridge Road, London W12 8AA.</p>
+        <div class="footer-policy-links">
+          <a href="policies/privacy-policy.html">Privacy Policy</a>
+          <a href="policies/refund-policy.html">Refund Policy</a>
+          <a href="policies/terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div class="modal" id="booking-modal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-color);">Book a Repair Reservation</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Reserve your express repair at IT Planet (134 Uxbridge Rd, London W12 8AA).</p>
+
+      <form>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" class="form-control" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" class="form-control" placeholder="07123 456789" required>
+        </div>
+        <div class="form-group">
+          <label>Device & Issue</label>
+          <input type="text" class="form-control" placeholder="e.g. iPhone 14 Cracked Screen" required>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date & Time</label>
+          <input type="datetime-local" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Repair Booking</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
