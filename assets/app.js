@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="#" class="btn btn-success open-booking-modal" style="margin-top: 10px;">Book Callout Repair Now</a>
           </div>
         `;
-        bindModalTriggers(postcodeResult);
       } else {
         postcodeResult.innerHTML = `
           <div style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
@@ -140,36 +139,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Booking Modal
+  // Booking Modal — event delegation so dynamically inserted CTAs also work
   const modal = document.getElementById('booking-modal');
   const closeModalBtn = document.querySelector('.modal-close');
 
-  function openModal(e) {
-    if (e) e.preventDefault();
-    if (modal) modal.classList.add('active');
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
 
-  function bindModalTriggers(scope) {
-    (scope || document).querySelectorAll('.open-booking-modal').forEach(btn => {
-      btn.addEventListener('click', openModal);
-    });
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
-  bindModalTriggers();
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.open-booking-modal');
+    if (trigger) {
+      e.preventDefault();
+      openModal();
+      return;
+    }
+    if (e.target === modal || e.target.closest('.modal-close')) {
+      closeModal();
+    }
+  });
 
-  if (closeModalBtn && modal) {
-    closeModalBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
 
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') modal.classList.remove('active');
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeModal();
     });
   }
 });
