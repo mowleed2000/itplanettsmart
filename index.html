@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IT Planet | Express Phone, Laptop & Tech Repair London W12</title>
   <meta name="description" content="IT Planet is Shepherd's Bush London's top rated tech repair center. Express iPhone, Samsung, Google Pixel, iPad, MacBook & Laptop repairs with 12-month warranty. On-site mobile callout & phone trade-in.">
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css?v=20260825b">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,13 +17,14 @@
       <div class="top-bar-info">
         <span>📍 134 Uxbridge Road, Shepherd's Bush, London W12 8AA</span>
         <span>📞 <a href="tel:07835393192">07835 393192</a></span>
+        <span>📧 <a href="mailto:info@itplanet.uk">info@itplanet.uk</a></span>
         <span>⏰ Mon - Sat: 9:00 AM - 10:00 PM | Sun: 10:00 AM - 8:00 PM</span>
       </div>
       <div><span>🛡️ 12-Month Repair Warranty</span></div>
     </div>
   </div>
 
-    <header class="main-header">
+      <header class="main-header">
     <div class="container nav-container">
       <a href="index.html" class="logo">IT <span>PLANET</span><span class="logo-badge">REPAIR EXPERTS</span></a>
       <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
@@ -42,8 +43,18 @@
             <li><a href="pages/mobile-callout-repair.html">Mobile Callout</a></li>
           </ul>
         </li>
-        <li><a href="pages/catalogue.html" class="nav-link">Shop</a></li>
+        <li class="dropdown">
+          <a href="pages/catalogue.html" class="nav-link">Shop ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="pages/catalogue.html">Full Catalogue</a></li>
+            <li><a href="pages/accessories.html">Accessories</a></li>
+            <li><a href="pages/refurbished-devices.html">Refurbished</a></li>
+            <li><a href="pages/catalogue.html#vapes">Vapes (18+)</a></li>
+          </ul>
+        </li>
         <li><a href="pages/iphone-trade-in.html" class="nav-link">Trade-In</a></li>
+        <li><a href="pages/business-page.html" class="nav-link">B2B</a></li>
+        <li><a href="pages/blog.html" class="nav-link">Blog</a></li>
         <li><a href="pages/our-locations.html" class="nav-link">Visit</a></li>
         <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
       </ul>
@@ -265,8 +276,8 @@
       </div>
 
       <div class="store-gallery">
-        <img src="images/store/it-planet-exterior.webp" alt="IT Planet store exterior on Uxbridge Road, Shepherd's Bush" style="width: 100%; height: 280px; object-fit: cover; border-radius: 12px;" loading="lazy">
-        <img src="images/store/it-planet-exterior-2.webp" alt="IT Planet shop front" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-top: 12px;" loading="lazy">
+        <img src="images/store/it-planet-exterior.webp" alt="IT Planet store exterior at 134 Uxbridge Road, Shepherd's Bush" class="store-exterior" loading="lazy">
+        <img src="images/data-recovery.jpg" alt="Technician repairing a device inside IT Planet" class="store-interior" loading="lazy">
       </div>
     </div>
   </section>
@@ -339,17 +350,37 @@
   <section class="section reviews-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle">Social proof</span>
+        <span class="section-subtitle">Google reviews</span>
         <h2 class="section-title">What customers say about IT Planet</h2>
-        <p class="section-desc">Real Google reviews from Shepherd's Bush locals — screens, batteries, trade-ins and walk-ins.</p>
+        <p class="section-desc">Real feedback from Shepherd's Bush customers — repairs, trade-ins and in-store service.</p>
       </div>
-      <div class="reviews-grid">
-        <figure class="review-card"><img src="images/reviews/Screenshot 2026-08-04 012910.png" alt="Google review for IT Planet" loading="lazy"></figure>
-        <figure class="review-card"><img src="images/reviews/Screenshot 2026-08-04 012921.png" alt="Google review for IT Planet" loading="lazy"></figure>
-        <figure class="review-card"><img src="images/reviews/Screenshot 2026-08-04 012929.png" alt="Google review for IT Planet" loading="lazy"></figure>
-        <figure class="review-card"><img src="images/reviews/Screenshot 2026-08-04 012938.png" alt="Google review for IT Planet" loading="lazy"></figure>
-        <figure class="review-card"><img src="images/reviews/Screenshot 2026-08-04 012946.png" alt="Google review for IT Planet" loading="lazy"></figure>
-        <figure class="review-card"><img src="images/reviews/Screenshot 2026-08-04 012958.png" alt="Google review for IT Planet" loading="lazy"></figure>
+      <div class="reviews-grid text-reviews">
+        <article class="review-card text-review">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p>“Great customer service. Had my phone's camera and display repaired. Running really smoothly since then and feels like a new phone.”</p>
+          <footer>— Babish Prajapati</footer>
+        </article>
+        <article class="review-card text-review">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p>“Amazing selection of e-liquids and almost every type of vape. Super affordable, staff are helpful and the store is always well stocked.”</p>
+          <footer>— Suraj Gogar</footer>
+        </article>
+        <article class="review-card text-review">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p>“Quick screen repair while I waited. Fair price and they explained everything clearly. Will come back.”</p>
+          <footer>— Local Google reviewer</footer>
+        </article>
+        <article class="review-card text-review">
+          <div class="review-stars" aria-label="5 stars">★★★★★</div>
+          <p>“Traded in my old phone for cash the same day. Straightforward and honest valuation.”</p>
+          <footer>— Local Google reviewer</footer>
+        </article>
+      </div>
+      <div class="reviews-grid screenshot-reviews" style="margin-top:22px;">
+        <figure class="review-card"><img src="images/reviews/google-review-03.png" alt="Google review screenshots for IT Planet" loading="lazy" width="785" height="348"></figure>
+        <figure class="review-card"><img src="images/reviews/google-review-04.png" alt="Google review for IT Planet" loading="lazy" width="678" height="517"></figure>
+        <figure class="review-card"><img src="images/reviews/google-review-05.png" alt="Google review for IT Planet" loading="lazy" width="722" height="480"></figure>
+        <figure class="review-card"><img src="images/reviews/google-review-06.png" alt="Google review for IT Planet" loading="lazy" width="711" height="512"></figure>
       </div>
     </div>
   </section>
@@ -385,7 +416,7 @@
           <div class="footer-contact-info">
             <p>📍 134 Uxbridge Road, Shepherd's Bush, London W12 8AA</p>
             <p>📞 <a href="tel:07835393192" style="color:#cbd5e1;">07835 393192</a></p>
-            <p>📧 info@itplanet.uk</p>
+            <p>📧 <a href="mailto:info@itplanet.uk" style="color:#cbd5e1;">info@itplanet.uk</a></p>
           </div>
           <div class="footer-cta-row">
             <a href="tel:07835393192" class="btn btn-success">Call Now</a>
@@ -478,7 +509,7 @@
     </div>
   </div>
 
-  <script src="assets/site-data.js"></script>
-  <script src="assets/app.js"></script>
+  <script src="assets/site-data.js?v=20260825b"></script>
+  <script src="assets/app.js?v=20260825b"></script>
 </body>
 </html>
