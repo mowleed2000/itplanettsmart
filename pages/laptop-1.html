@@ -17,7 +17,7 @@
     }
   </style>
 </head>
-<body>
+<body data-root="pages">
 <div class="top-bar">
     <div class="container">
       <div class="top-bar-info">
@@ -36,13 +36,11 @@
         <span class="logo-badge">REPAIR EXPERTS</span>
       </a>
       <div class="site-search">
-        <input type="search" id="site-search-input" class="site-search-input" placeholder="Search repairs, devices, vapes…" data-prefix="../" autocomplete="off" aria-label="Search site">
+        <input type="search" id="site-search-input" class="site-search-input" placeholder="Search phones, repairs, vapes…" data-prefix="../" autocomplete="off" aria-label="Search site">
         <div id="site-search-results" class="site-search-results"></div>
       </div>
       <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
-      <ul class="nav-menu">
-        <li><a href="catalogue.html" class="nav-link">Catalogue</a></li>
-        <li><a href="mobile-callout-repair.html" class="nav-link nav-highlight-success">Callout</a></li>
+            <ul class="nav-menu">
         <li class="dropdown">
           <a href="phone-repairs.html" class="nav-link">Repairs ▾</a>
           <ul class="dropdown-menu">
@@ -52,17 +50,17 @@
             <li><a href="huawei-phone-repairs.html">Huawei</a></li>
             <li><a href="ipad.html">iPad & Tablet</a></li>
             <li><a href="laptop-1.html">MacBook & Laptop</a></li>
-            <li><a href="data-recovery.html">Data Recovery</a></li>
             <li><a href="watch.html">Apple Watch</a></li>
+            <li><a href="data-recovery.html">Data Recovery</a></li>
+            <li><a href="mobile-callout-repair.html">Mobile Callout</a></li>
           </ul>
         </li>
-        <li><a href="iphone-trade-in.html" class="nav-link nav-highlight-warn">Trade-In</a></li>
-        <li><a href="blog.html" class="nav-link">Blog</a></li>
-        <li><a href="business-page.html" class="nav-link">B2B</a></li>
+        <li><a href="catalogue.html" class="nav-link">Shop</a></li>
+        <li><a href="iphone-trade-in.html" class="nav-link">Trade-In</a></li>
         <li><a href="our-locations.html" class="nav-link">Visit</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <div class="header-cta">
+<div class="header-cta">
         <a href="tel:07835393192" class="btn btn-success">Call Now</a>
         <a href="#" class="btn btn-primary open-enquiry-modal">Enquire</a>
       </div>
@@ -89,37 +87,76 @@
 
   <section class="section">
     <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Bring your machine in</span>
+        <h2 class="section-title">Laptops & tablets we see every week</h2>
+        <p class="section-desc">Same-day diagnostics when parts are ready. Ask about SSD upgrades, screens, batteries and liquid damage.</p>
+      </div>
+      <div class="device-grid" style="margin-bottom:40px;">
+        <a href="#" class="device-card open-enquiry-modal" data-prefill="MacBook Pro repair enquiry">
+          <img src="../images/catalogue/apple-macbook-pro-14.jpg" alt="MacBook Pro repair" loading="lazy">
+          <h4>MacBook Pro</h4>
+          <p>14" / 16" · screens & logic</p>
+        </a>
+        <a href="#" class="device-card open-enquiry-modal" data-prefill="MacBook Air repair enquiry">
+          <img src="../images/catalogue/apple-macbook-air-silver-transparent-background.jpg" alt="MacBook Air repair" loading="lazy">
+          <h4>MacBook Air</h4>
+          <p>M-series battery & keyboard</p>
+        </a>
+        <a href="#" class="device-card open-enquiry-modal" data-prefill="Surface laptop repair enquiry">
+          <img src="../images/catalogue/microsoft-surface-business-laptop.jpg" alt="Surface laptop repair" loading="lazy">
+          <h4>Microsoft Surface</h4>
+          <p>Business & consumer models</p>
+        </a>
+        <a href="#" class="device-card open-enquiry-modal" data-prefill="ThinkPad / Windows laptop repair">
+          <img src="../images/catalogue/thinkpad.jpg" alt="ThinkPad repair" loading="lazy">
+          <h4>Windows Laptops</h4>
+          <p>Dell, HP, Lenovo, ASUS</p>
+        </a>
+        <a href="ipad.html" class="device-card">
+          <img src="../images/catalogue/ipad-air-4.png" alt="iPad repair" loading="lazy">
+          <h4>iPad</h4>
+          <p>Screens, batteries, charging</p>
+        </a>
+        <a href="catalogue.html#laptops" class="device-card">
+          <img src="../images/catalogue/samsung-galaxy-tab-s5e.jpg" alt="Tablets in stock" loading="lazy">
+          <h4>Also in stock</h4>
+          <p>See tablets & laptops for sale</p>
+        </a>
+      </div>
+
       <div class="services-grid">
         <div class="service-card">
-          <img src="../images/macbook-pro.jpg" class="model-img" alt="MacEnquire">
-          <h3>Apple MacBook Air & MacBook Pro Repair</h3>
+          <img src="../images/catalogue/apple-macbook-pro-14.jpg" class="model-img" alt="MacBook repair" loading="lazy">
+          <h3>Apple MacBook Air & Pro</h3>
           <p>Retina display replacement, battery service, and logic board repair.</p>
           <ul class="service-features">
-            <li>✓ Liquid Damage Logic Board Repair</li>
+            <li>✓ Liquid damage logic board repair</li>
+            <li>✓ Keyboard & trackpad service</li>
           </ul>
-          <a href="#" class="btn btn-primary open-enquiry-modal" style="width:100%;">Enquire</a>
+          <a href="#" class="btn btn-primary open-enquiry-modal" data-prefill="MacBook repair enquiry" style="width:100%;">Enquire</a>
         </div>
 
         <div class="service-card">
-          <img src="../images/Dell.png" class="model-img" style="object-fit: contain; background: #f8fafc; padding: 20px;" alt="PC Laptop Repair">
-          <h3>Windows Laptop Repair (Dell, HP, Lenovo, ASUS, Acer)</h3>
-          <p>Full hardware diagnostic and fast component replacement.</p>
+          <img src="../images/catalogue/surface-laptop.jpg" class="model-img" alt="PC Laptop Repair" loading="lazy">
+          <h3>Windows Laptop Repair</h3>
+          <p>Dell, HP, Lenovo, ASUS, Acer — full hardware diagnostic and component replacement.</p>
           <ul class="service-features">
-            <li>✓ High-Speed NVMe SSD Upgrade</li>
+            <li>✓ High-speed NVMe SSD upgrade</li>
+            <li>✓ Screen & hinge repairs</li>
           </ul>
-          <a href="#" class="btn btn-primary open-enquiry-modal" style="width:100%;">Enquire — Laptop Repair</a>
+          <a href="#" class="btn btn-primary open-enquiry-modal" data-prefill="Windows laptop repair" style="width:100%;">Enquire — Laptop Repair</a>
         </div>
 
         <div class="service-card">
-          <img src="../images/data-recovery.jpg" class="model-img" alt="Laptop SSD upgrade and performance repair">
-          <h3>SSD Upgrade & System Performance Tune-Up</h3>
-          <p>Boost your slow laptop speed up to 10x with ultra-fast solid state drive installation.</p>
+          <img src="../images/b2b/ssd-upgrades.jpg" class="model-img" alt="Laptop SSD upgrade" loading="lazy">
+          <h3>SSD Upgrade & Tune-Up</h3>
+          <p>Boost a slow laptop with solid-state storage and a clean OS install.</p>
           <ul class="service-features">
-            <li>✓ 512GB / 1TB Ultra NVMe SSD</li>
-            <li>✓ Windows 11 / macOS Clean Install</li>
-            <li>✓ Data Transfer & Backup Included</li>
+            <li>✓ 512GB / 1TB NVMe options</li>
+            <li>✓ Data transfer included</li>
           </ul>
-          <a href="#" class="btn btn-primary open-enquiry-modal" style="width:100%;">Enquire — Upgrade</a>
+          <a href="#" class="btn btn-primary open-enquiry-modal" data-prefill="SSD upgrade enquiry" style="width:100%;">Enquire — Upgrade</a>
         </div>
       </div>
     </div>

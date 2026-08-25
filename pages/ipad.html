@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../assets/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-root="pages">
 <div class="top-bar">
     <div class="container">
       <div class="top-bar-info">
@@ -27,13 +27,11 @@
         <span class="logo-badge">REPAIR EXPERTS</span>
       </a>
       <div class="site-search">
-        <input type="search" id="site-search-input" class="site-search-input" placeholder="Search repairs, devices, vapes…" data-prefix="../" autocomplete="off" aria-label="Search site">
+        <input type="search" id="site-search-input" class="site-search-input" placeholder="Search phones, repairs, vapes…" data-prefix="../" autocomplete="off" aria-label="Search site">
         <div id="site-search-results" class="site-search-results"></div>
       </div>
       <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
-      <ul class="nav-menu">
-        <li><a href="catalogue.html" class="nav-link">Catalogue</a></li>
-        <li><a href="mobile-callout-repair.html" class="nav-link nav-highlight-success">Callout</a></li>
+            <ul class="nav-menu">
         <li class="dropdown">
           <a href="phone-repairs.html" class="nav-link">Repairs ▾</a>
           <ul class="dropdown-menu">
@@ -43,17 +41,17 @@
             <li><a href="huawei-phone-repairs.html">Huawei</a></li>
             <li><a href="ipad.html">iPad & Tablet</a></li>
             <li><a href="laptop-1.html">MacBook & Laptop</a></li>
-            <li><a href="data-recovery.html">Data Recovery</a></li>
             <li><a href="watch.html">Apple Watch</a></li>
+            <li><a href="data-recovery.html">Data Recovery</a></li>
+            <li><a href="mobile-callout-repair.html">Mobile Callout</a></li>
           </ul>
         </li>
-        <li><a href="iphone-trade-in.html" class="nav-link nav-highlight-warn">Trade-In</a></li>
-        <li><a href="blog.html" class="nav-link">Blog</a></li>
-        <li><a href="business-page.html" class="nav-link">B2B</a></li>
+        <li><a href="catalogue.html" class="nav-link">Shop</a></li>
+        <li><a href="iphone-trade-in.html" class="nav-link">Trade-In</a></li>
         <li><a href="our-locations.html" class="nav-link">Visit</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <div class="header-cta">
+<div class="header-cta">
         <a href="tel:07835393192" class="btn btn-success">Call Now</a>
         <a href="#" class="btn btn-primary open-enquiry-modal">Enquire</a>
       </div>
@@ -69,9 +67,35 @@
 
   <section class="section">
     <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Tablet repairs</span>
+        <h2 class="section-title">iPads & Android tablets we fix</h2>
+      </div>
+      <div class="device-grid" style="margin-bottom:40px;">
+        <a href="#" class="device-card open-enquiry-modal" data-prefill="iPad Pro repair enquiry">
+          <img src="../images/catalogue/apple-ipad-7th-gen-.jpg" alt="iPad repair" loading="lazy">
+          <h4>iPad (all gens)</h4>
+          <p>Screen, battery, charging</p>
+        </a>
+        <a href="#" class="device-card open-enquiry-modal" data-prefill="iPad Air / Mini repair">
+          <img src="../images/catalogue/ipad-air-4.png" alt="iPad Air repair" loading="lazy">
+          <h4>iPad Air & Mini</h4>
+          <p>Digitizer & LCD service</p>
+        </a>
+        <a href="#" class="device-card open-enquiry-modal" data-prefill="Galaxy Tab repair">
+          <img src="../images/catalogue/samsung-galaxy-tab-s5e.jpg" alt="Galaxy Tab repair" loading="lazy">
+          <h4>Samsung Galaxy Tab</h4>
+          <p>S-series & Active tablets</p>
+        </a>
+        <a href="catalogue.html#laptops" class="device-card">
+          <img src="../images/catalogue/amazon-fire-7-tablet.jpg" alt="Tablets in stock" loading="lazy">
+          <h4>Also for sale</h4>
+          <p>See tablets in the shop</p>
+        </a>
+      </div>
       <div class="services-grid">
         <div class="service-card">
-          <img src="../images/ipad-pro.jpg" class="service-card-img" alt="iPad Pro and iPad Air repair">
+          <img src="../images/catalogue/ipad-air-4.png" class="service-card-img" alt="iPad Pro and iPad Air repair" loading="lazy">
           <h3>iPad Pro & iPad Air Repair</h3>
           <p>Full screen fusion assembly, battery, and USB-C port repairs.</p>
           <ul class="service-features">
@@ -79,34 +103,34 @@
             <li>✓ Battery replacement</li>
             <li>✓ Charging port &amp; diagnostics</li>
             <li>✓ 12-month parts warranty</li>
-</ul>
-          <a href="#" class="btn btn-primary open-enquiry-modal" style="width:100%;">Enquire — iPad Pro/Air Repair</a>
+          </ul>
+          <a href="#" class="btn btn-primary open-enquiry-modal" data-prefill="iPad Pro/Air repair" style="width:100%;">Enquire — iPad Pro/Air</a>
         </div>
 
         <div class="service-card">
-          <img src="../images/Battery.png" class="service-card-img" style="object-fit: contain; background: #f8fafc; padding: 24px;" alt="iPad battery and glass repair">
-          <h3>iPad Standard & iPad Mini Series</h3>
+          <img src="../images/catalogue/ipad-mini-4.jpg" class="service-card-img" alt="iPad Mini repair" loading="lazy">
+          <h3>iPad Standard & Mini</h3>
           <p>Separate front glass digitizer and LCD screen replacements.</p>
           <ul class="service-features">
             <li>✓ Screen &amp; display service</li>
             <li>✓ Battery replacement</li>
             <li>✓ Charging port &amp; diagnostics</li>
             <li>✓ 12-month parts warranty</li>
-</ul>
-          <a href="#" class="btn btn-primary open-enquiry-modal" style="width:100%;">Enquire — iPad Repair</a>
+          </ul>
+          <a href="#" class="btn btn-primary open-enquiry-modal" data-prefill="iPad repair" style="width:100%;">Enquire — iPad</a>
         </div>
 
         <div class="service-card">
-          <img src="../images/A54_1200x.png" class="service-card-img" alt="Samsung Galaxy Tab repair">
-          <h3>Samsung Galaxy Tab & Android Tablets</h3>
-          <p>Expert hardware and charging port fixes for all Android tablets.</p>
+          <img src="../images/catalogue/samsung-galaxy-tab-active-2.jpg" class="service-card-img" alt="Samsung Galaxy Tab repair" loading="lazy">
+          <h3>Samsung Galaxy Tab & Android</h3>
+          <p>Hardware and charging port fixes for Android tablets.</p>
           <ul class="service-features">
             <li>✓ Screen &amp; display service</li>
             <li>✓ Battery replacement</li>
             <li>✓ Charging port &amp; diagnostics</li>
             <li>✓ 12-month parts warranty</li>
-</ul>
-          <a href="#" class="btn btn-primary open-enquiry-modal" style="width:100%;">Enquire</a>
+          </ul>
+          <a href="#" class="btn btn-primary open-enquiry-modal" data-prefill="Android tablet repair" style="width:100%;">Enquire</a>
         </div>
       </div>
     </div>

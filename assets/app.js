@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Promo device interest popups (latest models)
-  const promoKey = 'itp_promo_seen_v2';
+  const promoKey = 'itp_promo_seen_v3';
   if (!sessionStorage.getItem(promoKey) && document.getElementById('device-promo-modal')) {
     setTimeout(() => {
       document.getElementById('device-promo-modal').classList.add('active');
@@ -80,26 +80,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Global site search
+  const isPagesRoot = document.body.dataset.root === 'pages';
+  const resolveHref = (page) => {
+    if (!page) return '#';
+    if (!isPagesRoot) return page;
+    if (page.startsWith('pages/')) return page.replace(/^pages\//, '');
+    if (page.startsWith('images/') || page.startsWith('assets/') || page.startsWith('policies/')) return '../' + page;
+    return '../' + page;
+  };
+  const resolveImg = (img) => {
+    if (!img) return '';
+    if (!isPagesRoot) return img;
+    return img.startsWith('../') ? img : '../' + img.replace(/^\.\.\//, '');
+  };
+
+  const searchIndex = [
+    ...(window.ITP_CATALOGUE || []),
+    ...(window.ITP_SERVICES || []),
+  ];
+
+  // Global site search — products + services
   const searchInput = document.getElementById('site-search-input');
   const searchResults = document.getElementById('site-search-results');
-  if (searchInput && searchResults && window.ITP_CATALOGUE) {
-    const prefix = searchInput.dataset.prefix || '';
+  if (searchInput && searchResults && searchIndex.length) {
     const render = (items) => {
       if (!items.length) {
-        searchResults.innerHTML = '<div class="search-empty">No matches — try iPhone, Samsung, vape, battery…</div>';
+        searchResults.innerHTML = '<div class="search-empty">No matches — try iPhone, PS5, charger, repair, trade-in…</div>';
         searchResults.classList.add('active');
         return;
       }
       searchResults.innerHTML = items.slice(0, 8).map(item => {
-        const img = prefix + item.image.replace(/^\.\.\//, '').replace(/^images\//, 'images/');
-        // normalize path relative to current page
-        let href = item.page;
-        let src = item.image;
-        if (prefix === '../') {
-          href = item.page.startsWith('pages/') ? item.page.replace(/^pages\//, '') : '../' + item.page;
-          src = item.image.startsWith('images/') ? '../' + item.image : item.image;
-        }
+        const href = resolveHref(item.page);
+        const src = resolveImg(item.image);
         return `<a class="search-result-item" href="${href}">
           <img src="${src}" alt="" loading="lazy" width="44" height="44">
           <span><strong>${item.name}</strong><small>${item.category}</small></span>
@@ -114,9 +126,15 @@ document.addEventListener('DOMContentLoaded', () => {
         searchResults.innerHTML = '';
         return;
       }
-      const matches = window.ITP_CATALOGUE.filter(item =>
+      const matches = searchIndex.filter(item =>
         (item.name + ' ' + item.category + ' ' + (item.tags || '')).toLowerCase().includes(q)
       );
+      // Prefer exact-ish product name hits first
+      matches.sort((a, b) => {
+        const as = a.name.toLowerCase().startsWith(q) ? 0 : 1;
+        const bs = b.name.toLowerCase().startsWith(q) ? 0 : 1;
+        return as - bs;
+      });
       render(matches);
     });
     document.addEventListener('click', (e) => {
@@ -124,67 +142,78 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Catalogue page filter/search
+  // Catalogue page — products only
   const grid = document.getElementById('catalogue-grid');
   const catSearch = document.getElementById('catalogue-search');
   if (grid && window.ITP_CATALOGUE) {
     let activeCategory = 'All';
-    const prefix = grid.dataset.prefix || '../';
-    const resolveImg = (img) => img.startsWith('images/') ? prefix.replace('pages/', '') && (prefix === '../' ? '../' + img : img) : img;
-    // simpler:
-    const imgPath = (img) => (document.body.dataset.root === 'pages' || prefix === '../')
-      ? (img.startsWith('../') ? img : '../' + img.replace(/^\.\.\//, ''))
-      : img;
+    const VAPE_CATS = new Set(['Vapes & Pods', 'Pouches & Heated', 'Coils & Tanks']);
+    const CHARGER_CATS = new Set(['Chargers & Power', 'Gadgets']);
+
+    const categoryMatch = (item, cat) => {
+      if (cat === 'All') return true;
+      if (cat === 'Vapes') return VAPE_CATS.has(item.category);
+      if (cat === 'Chargers & Power') return CHARGER_CATS.has(item.category) || item.category === 'Chargers & Power';
+      return item.category === cat;
+    };
 
     const paint = () => {
       const q = (catSearch?.value || '').trim().toLowerCase();
       const items = window.ITP_CATALOGUE.filter(item => {
-        const catOk = activeCategory === 'All' || item.category === activeCategory ||
-          (activeCategory === 'Vapes' && item.category === 'Vapes');
-        const qOk = !q || (item.name + ' ' + item.tags + ' ' + item.category).toLowerCase().includes(q);
+        const catOk = categoryMatch(item, activeCategory);
+        const qOk = !q || (item.name + ' ' + (item.tags || '') + ' ' + item.category).toLowerCase().includes(q);
         return catOk && qOk;
       });
       grid.innerHTML = items.map(item => {
-        const src = imgPath(item.image);
-        let href = item.page;
-        if (prefix === '../') {
-          href = item.page.startsWith('pages/') ? item.page.replace(/^pages\//, '') : '../' + item.page;
-          if (href.includes('catalogue.html')) href = 'catalogue.html' + (item.category === 'Vapes' ? '#vapes' : '');
-        }
-        return `<article class="catalogue-card" data-category="${item.category}">
-          <img src="${src}" alt="${item.name}" loading="lazy" width="280" height="180">
+        const src = resolveImg(item.image);
+        const badge = item.badge ? `<span class="catalogue-badge">${item.badge}</span>` : '';
+        const summary = item.summary || "Available in-store at Shepherd's Bush. Ask our team for options.";
+        return `<article class="catalogue-card" id="${(item.page || '').split('#')[1] || ''}" data-category="${item.category}">
+          <div class="catalogue-card-media">
+            <img src="${src}" alt="${item.name}" loading="lazy" width="280" height="180">
+            ${badge}
+          </div>
           <div class="catalogue-card-body">
             <span class="catalogue-pill">${item.category}</span>
             <h3>${item.name}</h3>
-            <p>Available in-store at Shepherd's Bush. Ask our team for options.</p>
+            <p>${summary}</p>
             <div class="catalogue-card-actions">
               <a href="tel:07835393192" class="btn btn-success">Call Now</a>
-              <a href="#" class="btn btn-outline open-enquiry-modal" data-prefill="${item.name}">Enquire</a>
+              <a href="#" class="btn btn-outline open-enquiry-modal" data-prefill="Stock enquiry: ${item.name}">Enquire</a>
             </div>
           </div>
         </article>`;
-      }).join('') || '<p class="section-desc">No items match your search.</p>';
+      }).join('') || '<p class="section-desc">No products match your search. Call us — we may have it in the back.</p>';
+    };
+
+    const setCategory = (cat) => {
+      activeCategory = cat;
+      document.querySelectorAll('[data-catalogue-category]').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-catalogue-category') === cat);
+      });
+      paint();
     };
 
     document.querySelectorAll('[data-catalogue-category]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-catalogue-category]').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeCategory = btn.getAttribute('data-catalogue-category');
-        paint();
-      });
+      btn.addEventListener('click', () => setCategory(btn.getAttribute('data-catalogue-category')));
     });
     catSearch?.addEventListener('input', paint);
 
-    if (location.hash === '#vapes') {
-      activeCategory = 'Vapes';
-      document.querySelector('[data-catalogue-category="Vapes"]')?.classList.add('active');
-      document.querySelector('[data-catalogue-category="All"]')?.classList.remove('active');
+    const hash = (location.hash || '').replace('#', '');
+    if (hash === 'vapes') setCategory('Vapes');
+    else if (hash === 'chargers') setCategory('Chargers & Power');
+    else if (hash === 'gaming') setCategory('Gaming & Electronics');
+    else if (hash === 'phones') setCategory('Smartphones');
+    else if (hash === 'laptops') setCategory('Tablets & Laptops');
+    else paint();
+
+    if (hash && !['vapes', 'chargers', 'gaming', 'phones', 'laptops'].includes(hash)) {
+      const el = document.getElementById(hash);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
     }
-    paint();
   }
 
-  // London postcode checker — keep, but funnel to call/visit/enquiry
+  // London postcode checker — funnel to call/visit/enquiry
   const postcodeForm = document.getElementById('postcode-check-form');
   const postcodeResult = document.getElementById('postcode-result');
   if (postcodeForm) {

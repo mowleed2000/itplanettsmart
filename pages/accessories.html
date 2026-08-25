@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../assets/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-root="pages">
 <div class="top-bar">
     <div class="container">
       <div class="top-bar-info">
@@ -27,13 +27,11 @@
         <span class="logo-badge">REPAIR EXPERTS</span>
       </a>
       <div class="site-search">
-        <input type="search" id="site-search-input" class="site-search-input" placeholder="Search repairs, devices, vapes…" data-prefix="../" autocomplete="off" aria-label="Search site">
+        <input type="search" id="site-search-input" class="site-search-input" placeholder="Search phones, repairs, vapes…" data-prefix="../" autocomplete="off" aria-label="Search site">
         <div id="site-search-results" class="site-search-results"></div>
       </div>
       <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
-      <ul class="nav-menu">
-        <li><a href="catalogue.html" class="nav-link">Catalogue</a></li>
-        <li><a href="mobile-callout-repair.html" class="nav-link nav-highlight-success">Callout</a></li>
+            <ul class="nav-menu">
         <li class="dropdown">
           <a href="phone-repairs.html" class="nav-link">Repairs ▾</a>
           <ul class="dropdown-menu">
@@ -43,17 +41,17 @@
             <li><a href="huawei-phone-repairs.html">Huawei</a></li>
             <li><a href="ipad.html">iPad & Tablet</a></li>
             <li><a href="laptop-1.html">MacBook & Laptop</a></li>
-            <li><a href="data-recovery.html">Data Recovery</a></li>
             <li><a href="watch.html">Apple Watch</a></li>
+            <li><a href="data-recovery.html">Data Recovery</a></li>
+            <li><a href="mobile-callout-repair.html">Mobile Callout</a></li>
           </ul>
         </li>
-        <li><a href="iphone-trade-in.html" class="nav-link nav-highlight-warn">Trade-In</a></li>
-        <li><a href="blog.html" class="nav-link">Blog</a></li>
-        <li><a href="business-page.html" class="nav-link">B2B</a></li>
+        <li><a href="catalogue.html" class="nav-link">Shop</a></li>
+        <li><a href="iphone-trade-in.html" class="nav-link">Trade-In</a></li>
         <li><a href="our-locations.html" class="nav-link">Visit</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <div class="header-cta">
+<div class="header-cta">
         <a href="tel:07835393192" class="btn btn-success">Call Now</a>
         <a href="#" class="btn btn-primary open-enquiry-modal">Enquire</a>
       </div>
@@ -69,26 +67,53 @@
 
   <section class="section">
     <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">In-store accessories</span>
+        <h2 class="section-title">Chargers, cases & everyday tech</h2>
+        <p class="section-desc">Stock changes weekly — call ahead or browse the full catalogue. Fitted free when you buy glass in store.</p>
+      </div>
+      <div class="device-grid" style="margin-bottom:36px;">
+        <a href="catalogue.html#chargers" class="device-card">
+          <img src="../images/catalogue/core-10-000mah-magnetic-power-bank-22.5w.jpg" alt="Power banks" loading="lazy">
+          <h4>Power Banks</h4>
+          <p>Magnetic & high-watt packs</p>
+        </a>
+        <a href="catalogue.html#chargers" class="device-card">
+          <img src="../images/catalogue/budi_charging_cable.png" alt="Charging cables" loading="lazy">
+          <h4>Cables & Adapters</h4>
+          <p>USB-C, Lightning, braided</p>
+        </a>
+        <a href="catalogue.html#gaming" class="device-card">
+          <img src="../images/catalogue/authentic-apple-air-pods.jpg" alt="AirPods and audio" loading="lazy">
+          <h4>Audio & Earbuds</h4>
+          <p>AirPods and everyday buds</p>
+        </a>
+        <a href="catalogue.html#gaming" class="device-card">
+          <img src="../images/catalogue/sony-ps5-dualsense.jpg" alt="Gaming accessories" loading="lazy">
+          <h4>Gaming Gear</h4>
+          <p>Controllers & holders</p>
+        </a>
+      </div>
       <div class="services-grid">
         <div class="service-card">
-          <img src="../images/phone-cases.jpg" class="service-card-img" alt="Protective phone cases">
+          <img src="../images/phone-cases.jpg" class="service-card-img" alt="Protective phone cases" loading="lazy">
           <h3>Protective Phone Cases</h3>
           <p>Heavy-duty drop protection, slim MagSafe clear cases, and leather wallets for iPhone, Samsung & Pixel.</p>
-          <a href="#" class="btn btn-outline open-enquiry-modal" style="width:100%;">Ask In Store</a>
+          <a href="#" class="btn btn-outline open-enquiry-modal" data-prefill="Phone case enquiry" style="width:100%;">Ask In Store</a>
         </div>
 
         <div class="service-card">
-          <img src="../images/Back_Glass.png" class="service-card-img" style="object-fit: contain; background: #f8fafc; padding: 24px;" alt="Tempered glass screen protectors">
+          <img src="../images/Back_Glass.png" class="service-card-img" style="object-fit: contain; background: #f8fafc; padding: 24px;" alt="Tempered glass screen protectors" loading="lazy">
           <h3>9H Tempered Glass Protectors</h3>
           <p>Privacy glass and anti-shatter screen protectors installed free in store.</p>
-          <a href="#" class="btn btn-outline open-enquiry-modal" style="width:100%;">Enquire</a>
+          <a href="#" class="btn btn-outline open-enquiry-modal" data-prefill="Screen protector enquiry" style="width:100%;">Enquire</a>
         </div>
 
         <div class="service-card">
-          <img src="../images/fast-chargers.jpg" class="service-card-img" alt="Fast chargers and power banks">
+          <img src="../images/catalogue/core-10-000mah-magnetic-power-bank-22.5w.jpg" class="service-card-img" alt="Fast chargers and power banks" loading="lazy">
           <h3>Fast Chargers & Power Banks</h3>
           <p>20W/65W USB-C Power Delivery adapters, MagSafe battery packs, and durable braided cables.</p>
-          <a href="#" class="btn btn-outline open-enquiry-modal" style="width:100%;">Ask In Store</a>
+          <a href="catalogue.html#chargers" class="btn btn-outline" style="width:100%;">See catalogue</a>
         </div>
       </div>
     </div>
