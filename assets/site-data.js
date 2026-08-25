@@ -649,7 +649,7 @@ window.ITP_CATALOGUE = [
     "id": "pixl-8000-8k-big-puff-vape-kit",
     "name": "PIXL 8000 / 8K Big Puff Vape Kit",
     "category": "Vapes & Pod Systems",
-    "image": "images/catalogue/blog-big-puff-vapes.png",
+    "image": "images/catalogue/pixl-big-puff.webp",
     "tags": "pixl 8000 / 8k big puff vape kit vapes & pod systems Black Cherry Blue Cotton Blue Razz Cherry Blue Razz Lemonade Blueberry Cranberry Blueberry Raspberry Blueberry Sour Razz Cherry Ice Double Apple Fresh Mint Hawaiian Oasis Hubba Bubba Juicy Peach Lemon & Lime Mango Ice Pineapple Ice Pink Lemonade Purple Dream Sour Apple Sour Pineapple Mango Spearmint Strawberry Kiwi Razz Strawberry Watermelon Blue Razz Lemonade Pineapple Ice Triple Mango Watermelon Ice",
     "page": "pages/catalogue.html#pixl-8000-8k-big-puff-vape-kit",
     "summary": "In-store at Shepherd's Bush. Call or visit for current stock.",
