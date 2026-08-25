@@ -12,7 +12,6 @@
 </head>
 <body>
 
-  <!-- Top Bar -->
   <div class="top-bar">
     <div class="container">
       <div class="top-bar-info">
@@ -20,51 +19,46 @@
         <span>📞 <a href="tel:07835393192">07835 393192</a></span>
         <span>⏰ Mon - Sat: 9:00 AM - 10:00 PM | Sun: 10:00 AM - 8:00 PM</span>
       </div>
-      <div>
-        <span>🛡️ 12-Month Repair Warranty</span>
-      </div>
+      <div><span>🛡️ 12-Month Repair Warranty</span></div>
     </div>
   </div>
 
-  <!-- Header -->
   <header class="main-header">
     <div class="container nav-container">
       <a href="index.html" class="logo">
         IT <span>PLANET</span>
         <span class="logo-badge">REPAIR EXPERTS</span>
       </a>
-
+      <div class="site-search">
+        <input type="search" id="site-search-input" class="site-search-input" placeholder="Search repairs, devices, vapes…" data-prefix="" autocomplete="off" aria-label="Search site">
+        <div id="site-search-results" class="site-search-results"></div>
+      </div>
       <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
-
       <ul class="nav-menu">
-        <li><a href="pages/mobile-callout-repair.html" class="nav-link nav-highlight-success">Mobile Callout</a></li>
-        <li><a href="pages/iphone-trade-in.html" class="nav-link nav-highlight-warn">Trade-In</a></li>
+        <li><a href="pages/catalogue.html" class="nav-link">Catalogue</a></li>
+        <li><a href="pages/mobile-callout-repair.html" class="nav-link nav-highlight-success">Callout</a></li>
         <li class="dropdown">
-          <a href="pages/phone-repairs.html" class="nav-link">Phone Repairs ▾</a>
+          <a href="pages/phone-repairs.html" class="nav-link">Repairs ▾</a>
           <ul class="dropdown-menu">
             <li><a href="pages/all-iphone-models.html">Apple iPhone</a></li>
             <li><a href="pages/samsung-mobile.html">Samsung Galaxy</a></li>
             <li><a href="pages/google-pixel.html">Google Pixel</a></li>
-            <li><a href="pages/huawei-phone-repairs.html">Huawei Repair</a></li>
-            <li><a href="pages/phone-repairs.html">All Brands Repair</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="pages/laptop-1.html" class="nav-link">Computers & Tech ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="pages/ipad.html">iPad & Tablet Repair</a></li>
-            <li><a href="pages/laptop-1.html">MacBook & Laptop Repair</a></li>
+            <li><a href="pages/huawei-phone-repairs.html">Huawei</a></li>
+            <li><a href="pages/ipad.html">iPad & Tablet</a></li>
+            <li><a href="pages/laptop-1.html">MacBook & Laptop</a></li>
             <li><a href="pages/data-recovery.html">Data Recovery</a></li>
             <li><a href="pages/watch.html">Apple Watch</a></li>
           </ul>
         </li>
-        <li><a href="pages/accessories.html" class="nav-link">Accessories</a></li>
-        <li><a href="pages/our-locations.html" class="nav-link">Store Location</a></li>
+        <li><a href="pages/iphone-trade-in.html" class="nav-link nav-highlight-warn">Trade-In</a></li>
+        <li><a href="pages/blog.html" class="nav-link">Blog</a></li>
+        <li><a href="pages/business-page.html" class="nav-link">B2B</a></li>
+        <li><a href="pages/our-locations.html" class="nav-link">Visit</a></li>
         <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
       </ul>
-
       <div class="header-cta">
-        <a href="#" class="btn btn-primary open-booking-modal">Book a Repair</a>
+        <a href="tel:07835393192" class="btn btn-success">Call Now</a>
+        <a href="#" class="btn btn-primary open-enquiry-modal">Enquire</a>
       </div>
     </div>
   </header>
@@ -77,9 +71,9 @@
         <p>Cracked screen? Battery draining fast? Water damage? Visit IT Planet on Uxbridge Road or book our <strong>Mobile Callout Van</strong> to fix your device at your doorstep in London.</p>
         
         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-          <a href="#quote-section" class="btn btn-primary">Get Instant Quote</a>
-          <a href="pages/mobile-callout-repair.html" class="btn btn-success">Book On-Site Callout</a>
-          <a href="pages/iphone-trade-in.html" class="btn btn-outline" style="color: white; border-color: white;">Sell Phone For Cash</a>
+          <a href="tel:07835393192" class="btn btn-success">Call Now</a>
+          <a href="pages/our-locations.html" class="btn btn-primary">Visit Store</a>
+          <a href="#" class="btn btn-outline open-enquiry-modal" style="color: white; border-color: white;" data-prefill="Homepage enquiry">Enquire</a>
         </div>
 
         <div class="hero-badges">
@@ -96,52 +90,21 @@
       </div>
 
       <!-- Quote Calculator Card -->
-      <div class="quote-card" id="quote-section">
-        <h3>⚡ Get Instant Repair Quote</h3>
-        <p>Select your device and issue for an estimated repair cost:</p>
-        
-        <form id="quote-form">
-          <div class="form-group">
-            <label for="calc-brand">Device Brand</label>
-            <select id="calc-brand" class="form-control" required>
-              <option value="">Select Brand</option>
-              <option value="iphone">Apple iPhone</option>
-              <option value="samsung">Samsung Galaxy</option>
-              <option value="pixel">Google Pixel</option>
-              <option value="ipad">iPad & Tablet</option>
-              <option value="laptop">MacBook & Laptop</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="calc-model">Device Model</label>
-            <select id="calc-model" class="form-control" required>
-              <option value="">Select Model (Choose Brand First)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="calc-issue">Repair Type / Issue</label>
-            <select id="calc-issue" class="form-control" required>
-              <option value="">Select Repair Type</option>
-              <option value="Screen Replacement">Screen Replacement (Cracked Glass / LCD)</option>
-              <option value="Battery Replacement">Battery Replacement (Draining Fast)</option>
-              <option value="Back Glass Repair">Back Glass Replacement</option>
-              <option value="Charging Port Fix">Charging Port Repair</option>
-              <option value="Camera Repair">Camera Lens / Sensor Fix</option>
-              <option value="Water Damage Diagnostic">Water / Liquid Damage Diagnostic</option>
-              <option value="Data Recovery">Data Recovery Service</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Calculate Estimated Price</button>
-        </form>
-
-        <div id="quote-result" style="display: none; margin-top: 20px; padding: 15px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; text-align: center;">
-          <p style="font-size: 0.9rem; color: #166534; font-weight: 600; margin: 0;">Estimated Repair Cost:</p>
-          <h2 id="quote-price" style="color: #15803d; font-size: 1.8rem; margin: 5px 0;">£45 - £129</h2>
-          <a href="#" class="btn btn-primary open-booking-modal" style="margin-top: 10px; display: inline-block;">Book Repair Now</a>
+      <div class="quote-card" id="enquiry-section">
+        <h3>Talk to a technician</h3>
+        <p>Tell us your device and issue — we'll advise the best next step. No online booking or payment.</p>
+        <div class="form-group">
+          <label>Common repairs we handle</label>
+          <ul class="check-list compact">
+            <li>iPhone 17 / 16 / 15 screen &amp; battery</li>
+            <li>Samsung Galaxy S26 / S24 / Z Flip</li>
+            <li>Google Pixel, Huawei, iPad, MacBook</li>
+            <li>Water damage &amp; data recovery</li>
+          </ul>
         </div>
+        <a href="tel:07835393192" class="btn btn-success" style="width:100%;margin-bottom:10px;">Call 07835 393192</a>
+        <a href="#" class="btn btn-primary open-enquiry-modal" style="width:100%;margin-bottom:10px;" data-prefill="Homepage repair enquiry">Send Enquiry</a>
+        <a href="pages/our-locations.html" class="btn btn-outline" style="width:100%;">Visit Store — W12 8AA</a>
       </div>
     </div>
   </section>
@@ -250,7 +213,7 @@
           <span style="color: var(--cyan-accent); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">On-Site Repair Service</span>
           <h2>Can't Come To Store? We Repair at Your Home or Office!</h2>
           <p>Our custom mobile repair van travels anywhere across London. We fix your phone screen or battery at your doorstep in under 30 minutes with full 12-month warranty protection.</p>
-          <a href="pages/mobile-callout-repair.html" class="btn btn-success">Check London Postcode & Book</a>
+          <a href="pages/mobile-callout-repair.html" class="btn btn-success">Check Callout Coverage</a>
         </div>
         <div>
           <img src="images/1st_pg_Banner_img-pfti_1200x.png" alt="On-Site Mobile Callout Repair">
@@ -335,6 +298,22 @@
     </div>
   </section>
 
+
+  <section class="section vape-home-section">
+    <div class="container feature-banner" style="background:linear-gradient(135deg,#0f172a,#14532d);">
+      <div>
+        <span style="color:#86efac;font-weight:700;text-transform:uppercase;font-size:0.85rem;letter-spacing:1px;">In-store only · Challenge 25</span>
+        <h2>Vapes, pods &amp; nic salts</h2>
+        <p>Browse Elf Bar, Lost Mary, IVG, OXVA and more at our Shepherd's Bush counter. Ask staff for today's flavours — we do not sell nicotine products online.</p>
+        <a href="pages/catalogue.html#vapes" class="btn btn-success">View Vape Catalogue</a>
+        <a href="tel:07835393192" class="btn btn-outline" style="color:#fff;border-color:#fff;">Call About Stock</a>
+      </div>
+      <div>
+        <img src="images/vape/elfbar-600.jpg" alt="Vapes available at IT Planet" loading="lazy">
+      </div>
+    </div>
+  </section>
+
   <!-- Trust Banner Stats -->
   <section class="trust-banner">
     <div class="container trust-stats">
@@ -357,102 +336,109 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
           <h3>IT PLANET</h3>
-          <p>IT Planet is London's trusted tech and mobile repair service provider based in Shepherd's Bush. We repair smartphones, tablets, laptops, and smartwatches with precision engineering.</p>
+          <p>Shepherd's Bush tech repair, accessories, trade-in and in-store vapes. Visit us or call — no online checkout.</p>
           <div class="footer-contact-info">
             <p>📍 134 Uxbridge Road, Shepherd's Bush, London W12 8AA</p>
             <p>📞 <a href="tel:07835393192" style="color:#cbd5e1;">07835 393192</a></p>
             <p>📧 info@itplanet.uk</p>
           </div>
+          <div class="footer-cta-row">
+            <a href="tel:07835393192" class="btn btn-success">Call Now</a>
+            <a href="pages/our-locations.html" class="btn btn-outline" style="color:#fff;border-color:#64748b;">Visit Store</a>
+          </div>
         </div>
-
         <div class="footer-column">
-          <h4>Phone Repairs</h4>
+          <h4>Repairs</h4>
           <ul class="footer-links">
-            <li><a href="pages/all-iphone-models.html">iPhone Screen Repair</a></li>
-            <li><a href="pages/samsung-mobile.html">Samsung Galaxy Repair</a></li>
-            <li><a href="pages/google-pixel.html">Google Pixel Repair</a></li>
-            <li><a href="pages/huawei-phone-repairs.html">Huawei Repair</a></li>
-            <li><a href="pages/mobile-callout-repair.html">On-Site Mobile Callout</a></li>
+            <li><a href="pages/all-iphone-models.html">iPhone Repair</a></li>
+            <li><a href="pages/samsung-mobile.html">Samsung Repair</a></li>
+            <li><a href="pages/google-pixel.html">Pixel Repair</a></li>
+            <li><a href="pages/laptop-1.html">Laptop Repair</a></li>
+            <li><a href="pages/mobile-callout-repair.html">Mobile Callout</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
-          <h4>Computers & Services</h4>
+          <h4>Shop & Services</h4>
           <ul class="footer-links">
-            <li><a href="pages/ipad.html">iPad & Tablet Repair</a></li>
-            <li><a href="pages/laptop-1.html">MacBook Screen Fix</a></li>
-            <li><a href="pages/iphone-trade-in.html">Trade-In Phone For Cash</a></li>
-            <li><a href="pages/data-recovery.html">HDD/SSD Data Recovery</a></li>
-            <li><a href="pages/watch.html">Apple Watch Repair</a></li>
+            <li><a href="pages/catalogue.html">Full Catalogue</a></li>
+            <li><a href="pages/catalogue.html#vapes">Vapes In-Store</a></li>
+            <li><a href="pages/accessories.html">Accessories</a></li>
+            <li><a href="pages/iphone-trade-in.html">Trade-In</a></li>
+            <li><a href="pages/business-page.html">B2B Corporate</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
-          <h4>Company & Help</h4>
+          <h4>Help</h4>
           <ul class="footer-links">
-            <li><a href="pages/about-us1.html">About IT Planet</a></li>
-            <li><a href="pages/our-locations.html">Store Location & Hours</a></li>
-            <li><a href="pages/warranty.html">12-Month Warranty</a></li>
-            <li><a href="pages/business-page.html">B2B Corporate Repairs</a></li>
-            <li><a href="pages/contact.html">Contact Us</a></li>
+            <li><a href="pages/blog.html">Repair Blog</a></li>
+            <li><a href="pages/about-us1.html">About Us</a></li>
+            <li><a href="pages/our-locations.html">Store Location</a></li>
+            <li><a href="pages/warranty.html">Warranty</a></li>
+            <li><a href="pages/contact.html">Contact / Enquire</a></li>
           </ul>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <p>&copy; 2026 IT Planet. All rights reserved. 134 Uxbridge Road, London W12 8AA.</p>
+        <p>&copy; 2026 IT Planet. 134 Uxbridge Road, London W12 8AA. 18+ for nicotine products.</p>
         <div class="footer-policy-links">
-          <a href="policies/privacy-policy.html">Privacy Policy</a>
-          <a href="policies/refund-policy.html">Refund Policy</a>
-          <a href="policies/terms-of-service.html">Terms of Service</a>
+          <a href="policies/privacy-policy.html">Privacy</a>
+          <a href="policies/refund-policy.html">Refunds</a>
+          <a href="policies/terms-of-service.html">Terms</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Booking Modal -->
-  <div class="modal" id="booking-modal">
+  <div class="modal" id="enquiry-modal">
     <div class="modal-content">
-      <button class="modal-close">&times;</button>
-      <h2 style="font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-color);">Book a Repair Reservation</h2>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Reserve your express repair or callout van at IT Planet.</p>
-
-      <form>
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" class="form-control" placeholder="John Doe" required>
-        </div>
-        <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" class="form-control" placeholder="07123 456789" required>
-        </div>
-        <div class="form-group">
-          <label>Device & Issue</label>
-          <input type="text" class="form-control" placeholder="e.g. iPhone 14 Cracked Screen" required>
-        </div>
-        <div class="form-group">
-          <label>Service Type</label>
-          <select class="form-control" required>
-            <option value="store">Store Walk-In (134 Uxbridge Rd W12 8AA)</option>
-            <option value="callout">Mobile Callout (We Come To You)</option>
-            <option value="mailin">Mail-In Free Postage</option>
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <h2>Send an Enquiry</h2>
+      <p class="modal-lead">We'll get back to you by phone or email. Prefer faster help? Call <a href="tel:07835393192">07835 393192</a> or visit the store.</p>
+      <form id="enquiry-form">
+        <div class="form-group"><label>Full Name</label><input name="name" type="text" class="form-control" required></div>
+        <div class="form-group"><label>Phone</label><input name="phone" type="tel" class="form-control" required></div>
+        <div class="form-group"><label>Email (optional)</label><input name="email" type="email" class="form-control"></div>
+        <div class="form-group"><label>Device / Request</label><input name="device_issue" type="text" class="form-control" placeholder="e.g. iPhone 17 cracked screen" required></div>
+        <div class="form-group"><label>How can we help?</label>
+          <select name="intent" class="form-control" required>
+            <option value="repair">Repair enquiry</option>
+            <option value="callout">Mobile callout</option>
+            <option value="tradein">Trade-in / sell</option>
+            <option value="vape">Vape / in-store stock</option>
+            <option value="b2b">B2B / corporate</option>
+            <option value="other">Something else</option>
           </select>
         </div>
-        <div class="form-group">
-          <label>Preferred Date & Time</label>
-          <input type="datetime-local" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Repair Booking</button>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Submit Enquiry</button>
       </form>
+      <div id="enquiry-success" style="display:none;margin-top:14px;padding:12px;background:#f0fdf4;border-radius:8px;color:#166534;font-weight:600;">Enquiry noted — please also call us for the fastest response.</div>
     </div>
   </div>
 
+  <div class="modal" id="device-promo-modal">
+    <div class="modal-content promo-modal-content">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <span class="catalogue-pill">Now repairing</span>
+      <h2>iPhone 17 &amp; latest Samsung Galaxy</h2>
+      <p class="modal-lead">Screens, batteries and charging ports for the newest Apple and Samsung devices — call or visit Shepherd's Bush.</p>
+      <div class="promo-device-grid">
+        <div><img src="images/devices/iphone-17-pro-max.webp" alt="iPhone 17 Pro Max" loading="lazy"><strong>iPhone 17 series</strong></div>
+        <div><img src="images/devices/samsung-s26-ultra.webp" alt="Samsung S26 Ultra" loading="lazy"><strong>Galaxy S26 Ultra</strong></div>
+      </div>
+      <div class="promo-actions">
+        <a href="tel:07835393192" class="btn btn-success">Call Now</a>
+        <a href="#" class="btn btn-primary open-enquiry-modal" data-prefill="Latest device repair enquiry">Enquire</a>
+        <a href="#" class="btn btn-outline promo-dismiss">Maybe later</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/site-data.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>

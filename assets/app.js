@@ -1,10 +1,8 @@
-// IT Planet - Interactive JavaScript Features
+// IT Planet - Site interactions (enquiry funnel, search, catalogue, promos)
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile Navigation Toggle
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navMenu = document.querySelector('.nav-menu');
-
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', () => {
       navMenu.classList.toggle('active');
@@ -12,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Mobile dropdown toggles
   document.querySelectorAll('.dropdown > .nav-link').forEach((link) => {
     link.addEventListener('click', (e) => {
       if (window.innerWidth > 768) return;
@@ -25,156 +22,216 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Quote Calculator Logic
-  const brandSelect = document.getElementById('calc-brand');
-  const modelSelect = document.getElementById('calc-model');
-  const issueSelect = document.getElementById('calc-issue');
-  const quoteResult = document.getElementById('quote-result');
-  const quotePrice = document.getElementById('quote-price');
-
-  const modelData = {
-    iphone: ['iPhone 15 Pro Max', 'iPhone 15 Pro', 'iPhone 15', 'iPhone 14 Pro Max', 'iPhone 14', 'iPhone 13 Pro', 'iPhone 13', 'iPhone 12', 'iPhone 11', 'iPhone X / XS'],
-    samsung: ['Galaxy S24 Ultra', 'Galaxy S24+', 'Galaxy S24', 'Galaxy S23 Ultra', 'Galaxy S23', 'Galaxy S22', 'Galaxy Z Fold5', 'Galaxy A54', 'Galaxy A53'],
-    pixel: ['Pixel 8 Pro', 'Pixel 8', 'Pixel Fold', 'Pixel 7 Pro', 'Pixel 7', 'Pixel 6a'],
-    ipad: ['iPad Pro 12.9', 'iPad Air 5', 'iPad 10th Gen', 'iPad Mini 6'],
-    laptop: ['MacBook Pro 16"', 'MacBook Air M2', 'Dell XPS 15', 'HP Spectre', 'ASUS ZenBook']
-  };
-
-  const priceEstimates = {
-    'Screen Replacement': '£45 - £129',
-    'Battery Replacement': '£35 - £69',
-    'Back Glass Repair': '£40 - £85',
-    'Charging Port Fix': '£35 - £55',
-    'Camera Repair': '£39 - £79',
-    'Water Damage Diagnostic': '£25 - £45',
-    'Data Recovery': '£49 - £120'
-  };
-
-  if (brandSelect && modelSelect) {
-    brandSelect.addEventListener('change', (e) => {
-      const brand = e.target.value;
-      modelSelect.innerHTML = '<option value="">Select Model</option>';
-      if (modelData[brand]) {
-        modelData[brand].forEach(model => {
-          const opt = document.createElement('option');
-          opt.value = model;
-          opt.textContent = model;
-          modelSelect.appendChild(opt);
-        });
-      }
-    });
-  }
-
-  const quoteForm = document.getElementById('quote-form');
-  if (quoteForm) {
-    quoteForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const issue = issueSelect ? issueSelect.value : '';
-      if (issue && priceEstimates[issue]) {
-        quotePrice.textContent = priceEstimates[issue];
-      } else {
-        quotePrice.textContent = '£35 - £95';
-      }
-      if (quoteResult) quoteResult.style.display = 'block';
-    });
-  }
-
-  // London Postcode Callout Checker Logic
-  const postcodeForm = document.getElementById('postcode-check-form');
-  const postcodeResult = document.getElementById('postcode-result');
-
-  if (postcodeForm) {
-    postcodeForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const input = document.getElementById('postcode-input').value.trim().toUpperCase();
-      const validPrefixes = ['W12', 'W6', 'W14', 'SW6', 'W1', 'W2', 'W3', 'W4', 'W8', 'W11', 'W9', 'W10', 'SW1', 'WC1', 'WC2', 'EC1', 'NW1', 'NW8'];
-
-      const isEligible = validPrefixes.some(prefix => input.startsWith(prefix));
-      if (isEligible) {
-        postcodeResult.innerHTML = `
-          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
-            <p style="font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">Great news! On-Site Callout Available in ${input}</p>
-            <p style="font-size: 0.9rem;">Our mobile repair van can arrive at your location within 60 minutes.</p>
-            <a href="#" class="btn btn-success open-booking-modal" style="margin-top: 10px;">Book Callout Repair Now</a>
-          </div>
-        `;
-      } else {
-        postcodeResult.innerHTML = `
-          <div style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
-            <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 5px;">Store Drop-off & Free Courier Available</p>
-            <p style="font-size: 0.9rem;">Visit our Shepherd's Bush store at 134 Uxbridge Rd (W12 8AA) or use our free Mail-In repair service.</p>
-            <a href="our-locations.html" class="btn btn-primary" style="margin-top: 10px;">View Store Directions</a>
-          </div>
-        `;
-      }
-    });
-  }
-
-  // Trade-In Cash Calculator Logic
-  const tradeinForm = document.getElementById('tradein-calc-form');
-  const tradeinResult = document.getElementById('tradein-result');
-  const tradeinPrice = document.getElementById('tradein-price');
-
-  const tradeinValues = {
-    'iphone15pm': { 'like-new': '£680', 'good': '£590', 'cracked': '£380', 'faulty': '£220' },
-    'iphone15p': { 'like-new': '£590', 'good': '£510', 'cracked': '£320', 'faulty': '£180' },
-    'iphone14pm': { 'like-new': '£490', 'good': '£420', 'cracked': '£260', 'faulty': '£140' },
-    'iphone13': { 'like-new': '£340', 'good': '£290', 'cracked': '£180', 'faulty': '£95' },
-    'samsung-s24u': { 'like-new': '£620', 'good': '£540', 'cracked': '£340', 'faulty': '£190' },
-    'pixel8p': { 'like-new': '£390', 'good': '£320', 'cracked': '£190', 'faulty': '£110' }
-  };
-
-  if (tradeinForm) {
-    tradeinForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const model = document.getElementById('tradein-model').value;
-      const cond = document.getElementById('tradein-condition').value;
-
-      if (tradeinValues[model] && tradeinValues[model][cond]) {
-        tradeinPrice.textContent = tradeinValues[model][cond];
-      } else {
-        tradeinPrice.textContent = '£180 - £450';
-      }
-      if (tradeinResult) tradeinResult.style.display = 'block';
-    });
-  }
-
-  // Booking Modal — event delegation so dynamically inserted CTAs also work
-  const modal = document.getElementById('booking-modal');
-  const closeModalBtn = document.querySelector('.modal-close');
-
-  function openModal() {
+  // Enquiry modal (replaces booking)
+  const modal = document.getElementById('enquiry-modal');
+  function openEnquiry(prefill) {
     if (!modal) return;
+    if (prefill) {
+      const issue = modal.querySelector('[name="device_issue"]');
+      if (issue && !issue.value) issue.value = prefill;
+    }
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
-
-  function closeModal() {
+  function closeEnquiry() {
     if (!modal) return;
     modal.classList.remove('active');
     document.body.style.overflow = '';
   }
 
   document.addEventListener('click', (e) => {
-    const trigger = e.target.closest('.open-booking-modal');
+    const trigger = e.target.closest('.open-enquiry-modal');
     if (trigger) {
       e.preventDefault();
-      openModal();
+      openEnquiry(trigger.getAttribute('data-prefill') || '');
       return;
     }
     if (e.target === modal || e.target.closest('.modal-close')) {
-      closeModal();
+      closeEnquiry();
     }
   });
-
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') closeEnquiry();
   });
 
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', (e) => {
+  const enquiryForm = document.getElementById('enquiry-form');
+  if (enquiryForm) {
+    enquiryForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      closeModal();
+      const box = document.getElementById('enquiry-success');
+      if (box) box.style.display = 'block';
+      enquiryForm.reset();
+      setTimeout(closeEnquiry, 2200);
     });
   }
+
+  // Promo device interest popups (latest models)
+  const promoKey = 'itp_promo_seen_v2';
+  if (!sessionStorage.getItem(promoKey) && document.getElementById('device-promo-modal')) {
+    setTimeout(() => {
+      document.getElementById('device-promo-modal').classList.add('active');
+      sessionStorage.setItem(promoKey, '1');
+    }, 1800);
+  }
+  document.querySelectorAll('#device-promo-modal .modal-close, #device-promo-modal .promo-dismiss').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('device-promo-modal')?.classList.remove('active');
+    });
+  });
+
+  // Global site search
+  const searchInput = document.getElementById('site-search-input');
+  const searchResults = document.getElementById('site-search-results');
+  if (searchInput && searchResults && window.ITP_CATALOGUE) {
+    const prefix = searchInput.dataset.prefix || '';
+    const render = (items) => {
+      if (!items.length) {
+        searchResults.innerHTML = '<div class="search-empty">No matches — try iPhone, Samsung, vape, battery…</div>';
+        searchResults.classList.add('active');
+        return;
+      }
+      searchResults.innerHTML = items.slice(0, 8).map(item => {
+        const img = prefix + item.image.replace(/^\.\.\//, '').replace(/^images\//, 'images/');
+        // normalize path relative to current page
+        let href = item.page;
+        let src = item.image;
+        if (prefix === '../') {
+          href = item.page.startsWith('pages/') ? item.page.replace(/^pages\//, '') : '../' + item.page;
+          src = item.image.startsWith('images/') ? '../' + item.image : item.image;
+        }
+        return `<a class="search-result-item" href="${href}">
+          <img src="${src}" alt="" loading="lazy" width="44" height="44">
+          <span><strong>${item.name}</strong><small>${item.category}</small></span>
+        </a>`;
+      }).join('');
+      searchResults.classList.add('active');
+    };
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      if (q.length < 2) {
+        searchResults.classList.remove('active');
+        searchResults.innerHTML = '';
+        return;
+      }
+      const matches = window.ITP_CATALOGUE.filter(item =>
+        (item.name + ' ' + item.category + ' ' + (item.tags || '')).toLowerCase().includes(q)
+      );
+      render(matches);
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.site-search')) searchResults.classList.remove('active');
+    });
+  }
+
+  // Catalogue page filter/search
+  const grid = document.getElementById('catalogue-grid');
+  const catSearch = document.getElementById('catalogue-search');
+  if (grid && window.ITP_CATALOGUE) {
+    let activeCategory = 'All';
+    const prefix = grid.dataset.prefix || '../';
+    const resolveImg = (img) => img.startsWith('images/') ? prefix.replace('pages/', '') && (prefix === '../' ? '../' + img : img) : img;
+    // simpler:
+    const imgPath = (img) => (document.body.dataset.root === 'pages' || prefix === '../')
+      ? (img.startsWith('../') ? img : '../' + img.replace(/^\.\.\//, ''))
+      : img;
+
+    const paint = () => {
+      const q = (catSearch?.value || '').trim().toLowerCase();
+      const items = window.ITP_CATALOGUE.filter(item => {
+        const catOk = activeCategory === 'All' || item.category === activeCategory ||
+          (activeCategory === 'Vapes' && item.category === 'Vapes');
+        const qOk = !q || (item.name + ' ' + item.tags + ' ' + item.category).toLowerCase().includes(q);
+        return catOk && qOk;
+      });
+      grid.innerHTML = items.map(item => {
+        const src = imgPath(item.image);
+        let href = item.page;
+        if (prefix === '../') {
+          href = item.page.startsWith('pages/') ? item.page.replace(/^pages\//, '') : '../' + item.page;
+          if (href.includes('catalogue.html')) href = 'catalogue.html' + (item.category === 'Vapes' ? '#vapes' : '');
+        }
+        return `<article class="catalogue-card" data-category="${item.category}">
+          <img src="${src}" alt="${item.name}" loading="lazy" width="280" height="180">
+          <div class="catalogue-card-body">
+            <span class="catalogue-pill">${item.category}</span>
+            <h3>${item.name}</h3>
+            <p>Available in-store at Shepherd's Bush. Ask our team for options.</p>
+            <div class="catalogue-card-actions">
+              <a href="tel:07835393192" class="btn btn-success">Call Now</a>
+              <a href="#" class="btn btn-outline open-enquiry-modal" data-prefill="${item.name}">Enquire</a>
+            </div>
+          </div>
+        </article>`;
+      }).join('') || '<p class="section-desc">No items match your search.</p>';
+    };
+
+    document.querySelectorAll('[data-catalogue-category]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-catalogue-category]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.getAttribute('data-catalogue-category');
+        paint();
+      });
+    });
+    catSearch?.addEventListener('input', paint);
+
+    if (location.hash === '#vapes') {
+      activeCategory = 'Vapes';
+      document.querySelector('[data-catalogue-category="Vapes"]')?.classList.add('active');
+      document.querySelector('[data-catalogue-category="All"]')?.classList.remove('active');
+    }
+    paint();
+  }
+
+  // London postcode checker — keep, but funnel to call/visit/enquiry
+  const postcodeForm = document.getElementById('postcode-check-form');
+  const postcodeResult = document.getElementById('postcode-result');
+  if (postcodeForm) {
+    postcodeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = document.getElementById('postcode-input').value.trim().toUpperCase();
+      const validPrefixes = ['W12', 'W6', 'W14', 'SW6', 'W1', 'W2', 'W3', 'W4', 'W8', 'W11', 'W9', 'W10', 'SW1', 'WC1', 'WC2', 'EC1', 'NW1', 'NW8'];
+      const isEligible = validPrefixes.some(prefix => input.startsWith(prefix));
+      if (isEligible) {
+        postcodeResult.innerHTML = `
+          <div class="result-ok">
+            <p><strong>Callout available in ${input}</strong></p>
+            <p>Call us to arrange an on-site visit, or send an enquiry.</p>
+            <a href="tel:07835393192" class="btn btn-success">Call 07835 393192</a>
+            <a href="#" class="btn btn-outline open-enquiry-modal" data-prefill="Mobile callout request for ${input}">Enquire</a>
+          </div>`;
+      } else {
+        postcodeResult.innerHTML = `
+          <div class="result-info">
+            <p><strong>Visit our Shepherd's Bush store</strong></p>
+            <p>134 Uxbridge Road, London W12 8AA — walk-ins welcome.</p>
+            <a href="our-locations.html" class="btn btn-primary">Get Directions</a>
+            <a href="tel:07835393192" class="btn btn-success">Call Now</a>
+          </div>`;
+      }
+    });
+  }
+
+  // Trade-in valuation — no cash amounts shown
+  const tradeinForm = document.getElementById('tradein-calc-form');
+  if (tradeinForm) {
+    tradeinForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const result = document.getElementById('tradein-result');
+      if (result) {
+        result.style.display = 'block';
+        result.innerHTML = `
+          <p style="font-weight:700;margin-bottom:8px;">Thanks — we can value this device in-store.</p>
+          <p style="color:var(--text-muted);font-size:0.95rem;margin-bottom:12px;">Call us or visit 134 Uxbridge Road for a same-day cash assessment. No online purchase required.</p>
+          <a href="tel:07835393192" class="btn btn-success">Call Now</a>
+          <a href="#" class="btn btn-outline open-enquiry-modal" data-prefill="Trade-in valuation enquiry">Enquire</a>`;
+      }
+    });
+  }
+
+  // Lazy-load images that lack loading attr
+  document.querySelectorAll('img:not([loading])').forEach(img => {
+    if (!img.closest('.logo')) img.setAttribute('loading', 'lazy');
+  });
 });
