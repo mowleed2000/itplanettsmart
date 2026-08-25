@@ -102,13 +102,47 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 80px;
+  min-height: 72px;
   height: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   position: relative;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: nowrap;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-link {
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 8px 4px;
+  white-space: nowrap;
+}
+
+.header-cta {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: auto;
 }
 
 .logo {
@@ -144,25 +178,6 @@ img {
 
 .nav-highlight-warn {
   color: var(--warning-color) !important;
-}
-
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  flex: 1;
-  min-width: 0;
-}
-
-.nav-link {
-  color: var(--text-main);
-  font-weight: 600;
-  font-size: 0.88rem;
-  padding: 8px 2px;
-  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -830,29 +845,19 @@ img {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+@media (max-width: 900px) {
   .header-cta {
     display: none;
   }
-}
-
-@media (max-width: 768px) {
-  .top-bar .container {
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
-  }
-  .top-bar-info span {
-    margin-right: 0;
+  .logo-badge {
     display: none;
-  }
-  .top-bar-info span:nth-child(-n+2) {
-    display: inline-flex;
-    margin: 0 8px;
   }
   .nav-menu {
     display: none;
     position: absolute;
-    top: 80px;
+    top: 100%;
     left: 0;
     width: 100%;
     background: white;
@@ -862,6 +867,7 @@ img {
     box-shadow: var(--shadow-md);
     z-index: 1001;
     gap: 0;
+    justify-content: flex-start;
   }
   .nav-menu.active {
     display: flex;
@@ -886,6 +892,22 @@ img {
   }
   .mobile-toggle {
     display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-bar .container {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+  .top-bar-info span {
+    margin-right: 0;
+    display: none;
+  }
+  .top-bar-info span:nth-child(-n+2) {
+    display: inline-flex;
+    margin: 0 8px;
   }
   .hero-content h1 {
     font-size: 2.2rem;
@@ -1106,12 +1128,59 @@ img {
   .catalogue-sidebar { position: static; display: flex; flex-wrap: wrap; gap: 6px; }
   .catalogue-sidebar h3 { width: 100%; }
   .catalogue-cat { width: auto; }
-  .site-search { max-width: 180px; }
 }
 @media (max-width: 768px) {
-  .site-search { order: 3; flex: 1 1 100%; max-width: none; margin-top: 8px; }
-  .site-search-results { min-width: 0; width: 100%; }
-  .nav-container { flex-wrap: wrap; }
   .promo-device-grid { grid-template-columns: 1fr; }
   .header-cta { display: none; }
+}
+
+
+/* Catalogue search stays in page hero — not the header */
+.catalogue-search-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.catalogue-search-input {
+  flex: 1;
+  min-width: 220px;
+  max-width: 520px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+.catalogue-search-input::placeholder { color: rgba(255,255,255,0.65); }
+.catalogue-count {
+  color: rgba(255,255,255,0.8);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Reviews / social proof */
+.reviews-section { background: #f8fafc; }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.review-card {
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.review-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  background: #fff;
 }

@@ -1,18 +1,28 @@
-// IT Planet - Site interactions (enquiry funnel, search, catalogue, promos)
+// IT Planet - Site interactions (enquiry funnel, catalogue, promos)
 
 document.addEventListener('DOMContentLoaded', () => {
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navMenu = document.querySelector('.nav-menu');
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      mobileToggle.setAttribute('aria-expanded', navMenu.classList.contains('active'));
+      const open = navMenu.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // Close mobile menu when a non-dropdown link is chosen
+    navMenu.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        if (a.parentElement.classList.contains('dropdown') && a.classList.contains('nav-link')) return;
+        if (window.innerWidth <= 900) {
+          navMenu.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
     });
   }
 
   document.querySelectorAll('.dropdown > .nav-link').forEach((link) => {
     link.addEventListener('click', (e) => {
-      if (window.innerWidth > 768) return;
+      if (window.innerWidth > 900) return; // desktop: allow hover / navigate
       e.preventDefault();
       const parent = link.parentElement;
       document.querySelectorAll('.dropdown.open').forEach((openItem) => {
@@ -22,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Enquiry modal (replaces booking)
+  // Enquiry modal
   const modal = document.getElementById('enquiry-modal');
   function openEnquiry(prefill) {
     if (!modal) return;
@@ -46,9 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       openEnquiry(trigger.getAttribute('data-prefill') || '');
       return;
     }
-    if (e.target === modal || e.target.closest('.modal-close')) {
-      closeEnquiry();
-    }
+    if (e.target === modal || e.target.closest('.modal-close')) closeEnquiry();
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeEnquiry();
@@ -65,15 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Promo device interest popups (latest models)
-  const promoKey = 'itp_promo_seen_v3';
+  const promoKey = 'itp_promo_seen_v4';
   if (!sessionStorage.getItem(promoKey) && document.getElementById('device-promo-modal')) {
     setTimeout(() => {
       document.getElementById('device-promo-modal').classList.add('active');
       sessionStorage.setItem(promoKey, '1');
     }, 1800);
   }
-  document.querySelectorAll('#device-promo-modal .modal-close, #device-promo-modal .promo-dismiss').forEach(btn => {
+  document.querySelectorAll('#device-promo-modal .modal-close, #device-promo-modal .promo-dismiss').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       document.getElementById('device-promo-modal')?.classList.remove('active');
@@ -81,94 +88,42 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const isPagesRoot = document.body.dataset.root === 'pages';
-  const resolveHref = (page) => {
-    if (!page) return '#';
-    if (!isPagesRoot) return page;
-    if (page.startsWith('pages/')) return page.replace(/^pages\//, '');
-    if (page.startsWith('images/') || page.startsWith('assets/') || page.startsWith('policies/')) return '../' + page;
-    return '../' + page;
-  };
   const resolveImg = (img) => {
     if (!img) return '';
     if (!isPagesRoot) return img;
     return img.startsWith('../') ? img : '../' + img.replace(/^\.\.\//, '');
   };
 
-  const searchIndex = [
-    ...(window.ITP_CATALOGUE || []),
-    ...(window.ITP_SERVICES || []),
-  ];
-
-  // Global site search — products + services
-  const searchInput = document.getElementById('site-search-input');
-  const searchResults = document.getElementById('site-search-results');
-  if (searchInput && searchResults && searchIndex.length) {
-    const render = (items) => {
-      if (!items.length) {
-        searchResults.innerHTML = '<div class="search-empty">No matches — try iPhone, PS5, charger, repair, trade-in…</div>';
-        searchResults.classList.add('active');
-        return;
-      }
-      searchResults.innerHTML = items.slice(0, 8).map(item => {
-        const href = resolveHref(item.page);
-        const src = resolveImg(item.image);
-        return `<a class="search-result-item" href="${href}">
-          <img src="${src}" alt="" loading="lazy" width="44" height="44">
-          <span><strong>${item.name}</strong><small>${item.category}</small></span>
-        </a>`;
-      }).join('');
-      searchResults.classList.add('active');
-    };
-    searchInput.addEventListener('input', () => {
-      const q = searchInput.value.trim().toLowerCase();
-      if (q.length < 2) {
-        searchResults.classList.remove('active');
-        searchResults.innerHTML = '';
-        return;
-      }
-      const matches = searchIndex.filter(item =>
-        (item.name + ' ' + item.category + ' ' + (item.tags || '')).toLowerCase().includes(q)
-      );
-      // Prefer exact-ish product name hits first
-      matches.sort((a, b) => {
-        const as = a.name.toLowerCase().startsWith(q) ? 0 : 1;
-        const bs = b.name.toLowerCase().startsWith(q) ? 0 : 1;
-        return as - bs;
-      });
-      render(matches);
-    });
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.site-search')) searchResults.classList.remove('active');
-    });
-  }
-
-  // Catalogue page — products only
+  // Catalogue — products only (never services)
   const grid = document.getElementById('catalogue-grid');
   const catSearch = document.getElementById('catalogue-search');
   if (grid && window.ITP_CATALOGUE) {
     let activeCategory = 'All';
-    const VAPE_CATS = new Set(['Vapes & Pods', 'Pouches & Heated', 'Coils & Tanks']);
-    const CHARGER_CATS = new Set(['Chargers & Power', 'Gadgets']);
+    const VAPE_GROUP = new Set([
+      'Vapes & Pod Systems',
+      'Nicotine Pouches & Heated Tobacco',
+      'Vape Coils & Tanks',
+    ]);
 
     const categoryMatch = (item, cat) => {
       if (cat === 'All') return true;
-      if (cat === 'Vapes') return VAPE_CATS.has(item.category);
-      if (cat === 'Chargers & Power') return CHARGER_CATS.has(item.category) || item.category === 'Chargers & Power';
+      if (cat === 'Vapes') return VAPE_GROUP.has(item.category);
       return item.category === cat;
     };
 
     const paint = () => {
       const q = (catSearch?.value || '').trim().toLowerCase();
-      const items = window.ITP_CATALOGUE.filter(item => {
+      const items = window.ITP_CATALOGUE.filter((item) => {
         const catOk = categoryMatch(item, activeCategory);
         const qOk = !q || (item.name + ' ' + (item.tags || '') + ' ' + item.category).toLowerCase().includes(q);
         return catOk && qOk;
       });
-      grid.innerHTML = items.map(item => {
+      const countEl = document.getElementById('catalogue-count');
+      if (countEl) countEl.textContent = `${items.length} product${items.length === 1 ? '' : 's'}`;
+      grid.innerHTML = items.map((item) => {
         const src = resolveImg(item.image);
         const badge = item.badge ? `<span class="catalogue-badge">${item.badge}</span>` : '';
-        const summary = item.summary || "Available in-store at Shepherd's Bush. Ask our team for options.";
-        const pid = item.id || (item.page || '').split('#')[1] || '';
+        const pid = item.id || '';
         return `<article class="catalogue-card" id="${pid}" data-category="${item.category}">
           <div class="catalogue-card-media">
             <img src="${src}" alt="${item.name}" loading="lazy" width="280" height="180">
@@ -177,46 +132,52 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="catalogue-card-body">
             <span class="catalogue-pill">${item.category}</span>
             <h3>${item.name}</h3>
-            <p>${summary}</p>
+            <p>${item.summary || "In-store at Shepherd's Bush."}</p>
             <div class="catalogue-card-actions">
               <a href="tel:07835393192" class="btn btn-success">Call Now</a>
               <a href="#" class="btn btn-outline open-enquiry-modal" data-prefill="Stock enquiry: ${item.name}">Enquire</a>
             </div>
           </div>
         </article>`;
-      }).join('') || '<p class="section-desc">No products match your search. Call us — we may have it in the back.</p>';
+      }).join('') || '<p class="section-desc">No products match. Call us — we may have it in the back.</p>';
     };
 
     const HASH_TO_CAT = {
       vapes: 'Vapes',
-      chargers: 'Chargers & Power',
+      chargers: 'Chargers & Power Banks',
       gaming: 'Gaming & Electronics',
       phones: 'Smartphones',
       laptops: 'Tablets & Laptops',
+      snacks: 'Drinks & Snacks',
+      gadgets: 'Scales & Gadgets',
     };
     const CAT_TO_HASH = {
       Vapes: 'vapes',
-      'Chargers & Power': 'chargers',
+      'Chargers & Power Banks': 'chargers',
       'Gaming & Electronics': 'gaming',
       Smartphones: 'phones',
       'Tablets & Laptops': 'laptops',
+      'Drinks & Snacks': 'snacks',
+      'Scales & Gadgets': 'gadgets',
       All: '',
     };
 
     const setCategory = (cat, syncHash = true) => {
       activeCategory = cat || 'All';
-      document.querySelectorAll('[data-catalogue-category]').forEach(b => {
+      document.querySelectorAll('[data-catalogue-category]').forEach((b) => {
         b.classList.toggle('active', b.getAttribute('data-catalogue-category') === activeCategory);
       });
       paint();
       if (syncHash) {
         const next = CAT_TO_HASH[activeCategory];
         if (next) history.replaceState(null, '', '#' + next);
-        else if (CAT_TO_HASH.hasOwnProperty(activeCategory)) history.replaceState(null, '', location.pathname + location.search);
+        else if (Object.prototype.hasOwnProperty.call(CAT_TO_HASH, activeCategory)) {
+          history.replaceState(null, '', location.pathname + location.search);
+        }
       }
     };
 
-    document.querySelectorAll('[data-catalogue-category]').forEach(btn => {
+    document.querySelectorAll('[data-catalogue-category]').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         setCategory(btn.getAttribute('data-catalogue-category'));
@@ -225,9 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
     catSearch?.addEventListener('input', paint);
 
     const hash = (location.hash || '').replace('#', '');
-    if (HASH_TO_CAT[hash]) {
-      setCategory(HASH_TO_CAT[hash], false);
-    } else {
+    if (HASH_TO_CAT[hash]) setCategory(HASH_TO_CAT[hash], false);
+    else {
       paint();
       if (hash) {
         const el = document.getElementById(hash);
@@ -236,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // London postcode checker — funnel to call/visit/enquiry
+  // Postcode checker
   const postcodeForm = document.getElementById('postcode-check-form');
   const postcodeResult = document.getElementById('postcode-result');
   if (postcodeForm) {
@@ -244,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const input = document.getElementById('postcode-input').value.trim().toUpperCase();
       const validPrefixes = ['W12', 'W6', 'W14', 'SW6', 'W1', 'W2', 'W3', 'W4', 'W8', 'W11', 'W9', 'W10', 'SW1', 'WC1', 'WC2', 'EC1', 'NW1', 'NW8'];
-      const isEligible = validPrefixes.some(prefix => input.startsWith(prefix));
+      const isEligible = validPrefixes.some((prefix) => input.startsWith(prefix));
       if (isEligible) {
         postcodeResult.innerHTML = `
           <div class="result-ok">
@@ -265,7 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Trade-in valuation — no cash amounts shown
   const tradeinForm = document.getElementById('tradein-calc-form');
   if (tradeinForm) {
     tradeinForm.addEventListener('submit', (e) => {
@@ -275,15 +234,14 @@ document.addEventListener('DOMContentLoaded', () => {
         result.style.display = 'block';
         result.innerHTML = `
           <p style="font-weight:700;margin-bottom:8px;">Thanks — we can value this device in-store.</p>
-          <p style="color:var(--text-muted);font-size:0.95rem;margin-bottom:12px;">Call us or visit 134 Uxbridge Road for a same-day cash assessment. No online purchase required.</p>
+          <p style="color:var(--text-muted);font-size:0.95rem;margin-bottom:12px;">Call us or visit 134 Uxbridge Road for a same-day cash assessment.</p>
           <a href="tel:07835393192" class="btn btn-success">Call Now</a>
           <a href="#" class="btn btn-outline open-enquiry-modal" data-prefill="Trade-in valuation enquiry">Enquire</a>`;
       }
     });
   }
 
-  // Lazy-load images that lack loading attr
-  document.querySelectorAll('img:not([loading])').forEach(img => {
+  document.querySelectorAll('img:not([loading])').forEach((img) => {
     if (!img.closest('.logo')) img.setAttribute('loading', 'lazy');
   });
 });

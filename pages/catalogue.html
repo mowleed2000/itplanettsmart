@@ -20,15 +20,11 @@
       <div><span>🛡️ 12-Month Repair Warranty</span></div>
     </div>
   </div>
-  <header class="main-header">
+    <header class="main-header">
     <div class="container nav-container">
       <a href="../index.html" class="logo">IT <span>PLANET</span><span class="logo-badge">REPAIR EXPERTS</span></a>
-      <div class="site-search">
-        <input type="search" id="site-search-input" class="site-search-input" placeholder="Search phones, repairs, vapes…" data-prefix="../" autocomplete="off" aria-label="Search site">
-        <div id="site-search-results" class="site-search-results"></div>
-      </div>
-      <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
-            <ul class="nav-menu">
+      <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <ul class="nav-menu">
         <li class="dropdown">
           <a href="phone-repairs.html" class="nav-link">Repairs ▾</a>
           <ul class="dropdown-menu">
@@ -48,7 +44,7 @@
         <li><a href="our-locations.html" class="nav-link">Visit</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-<div class="header-cta">
+      <div class="header-cta">
         <a href="tel:07835393192" class="btn btn-success">Call Now</a>
         <a href="#" class="btn btn-primary open-enquiry-modal">Enquire</a>
       </div>
@@ -57,26 +53,31 @@
 
   <section class="hero catalogue-hero">
     <div class="container">
-      <span class="section-subtitle">In-store stock only</span>
+      <span class="section-subtitle">In-store inventory · 144 products</span>
       <h1>Shop the <span>Catalogue</span></h1>
-      <p>Phones, tablets, laptops, chargers, gaming gear and vapes — real products you can buy in store. Repairs and trade-in live under Repairs / Trade-In in the menu.</p>
-      <input type="search" id="catalogue-search" class="catalogue-search-input" placeholder="Search iPhone 15, MacBook, DualSense, Elf Bar…" aria-label="Search catalogue">
+      <p>The full IT Planet stock list — phones, tablets, laptops, chargers, gaming, vapes, snacks and more. Products only. Repairs and trade-in are in the menu, not here.</p>
+      <div class="catalogue-search-row">
+        <input type="search" id="catalogue-search" class="catalogue-search-input" placeholder="Search catalogue — iPhone, DualSense, charger, Elf Bar…" aria-label="Search catalogue">
+        <span id="catalogue-count" class="catalogue-count">144 products</span>
+      </div>
     </div>
   </section>
 
   <section class="section catalogue-section" id="catalogue">
     <div class="container catalogue-layout">
       <aside class="catalogue-sidebar">
-        <h3>Shop by category</h3>
+        <h3>Categories</h3>
         <button type="button" class="catalogue-cat active" data-catalogue-category="All">All products</button>
         <button type="button" class="catalogue-cat" data-catalogue-category="Smartphones">Smartphones</button>
         <button type="button" class="catalogue-cat" data-catalogue-category="Tablets & Laptops">Tablets & Laptops</button>
-        <button type="button" class="catalogue-cat" data-catalogue-category="Chargers & Power" id="cat-chargers">Chargers & Power</button>
+        <button type="button" class="catalogue-cat" data-catalogue-category="Chargers & Power Banks" id="cat-chargers">Chargers & Power Banks</button>
         <button type="button" class="catalogue-cat" data-catalogue-category="Gaming & Electronics" id="cat-gaming">Gaming & Electronics</button>
         <button type="button" class="catalogue-cat" data-catalogue-category="Vapes" id="cat-vapes">Vapes & Nicotine (18+)</button>
-        <button type="button" class="catalogue-cat" data-catalogue-category="Gadgets">Gadgets</button>
+        <button type="button" class="catalogue-cat" data-catalogue-category="Drinks & Snacks">Drinks & Snacks</button>
+        <button type="button" class="catalogue-cat" data-catalogue-category="Scales & Gadgets">Scales & Gadgets</button>
+        <button type="button" class="catalogue-cat" data-catalogue-category="Perfumes">Perfumes</button>
         <div class="sidebar-cta">
-          <p>Looking for a repair or trade-in?</p>
+          <p>Need a repair or trade-in?</p>
           <a href="phone-repairs.html" class="btn btn-outline" style="width:100%;">Repair your device</a>
           <a href="iphone-trade-in.html" class="btn btn-outline" style="width:100%;margin-top:8px;">Trade-In</a>
           <a href="tel:07835393192" class="btn btn-success" style="width:100%;margin-top:8px;">Call 07835 393192</a>
