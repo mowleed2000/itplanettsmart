@@ -168,7 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const src = resolveImg(item.image);
         const badge = item.badge ? `<span class="catalogue-badge">${item.badge}</span>` : '';
         const summary = item.summary || "Available in-store at Shepherd's Bush. Ask our team for options.";
-        return `<article class="catalogue-card" id="${(item.page || '').split('#')[1] || ''}" data-category="${item.category}">
+        const pid = item.id || (item.page || '').split('#')[1] || '';
+        return `<article class="catalogue-card" id="${pid}" data-category="${item.category}">
           <div class="catalogue-card-media">
             <img src="${src}" alt="${item.name}" loading="lazy" width="280" height="180">
             ${badge}
@@ -186,30 +187,52 @@ document.addEventListener('DOMContentLoaded', () => {
       }).join('') || '<p class="section-desc">No products match your search. Call us — we may have it in the back.</p>';
     };
 
-    const setCategory = (cat) => {
-      activeCategory = cat;
+    const HASH_TO_CAT = {
+      vapes: 'Vapes',
+      chargers: 'Chargers & Power',
+      gaming: 'Gaming & Electronics',
+      phones: 'Smartphones',
+      laptops: 'Tablets & Laptops',
+    };
+    const CAT_TO_HASH = {
+      Vapes: 'vapes',
+      'Chargers & Power': 'chargers',
+      'Gaming & Electronics': 'gaming',
+      Smartphones: 'phones',
+      'Tablets & Laptops': 'laptops',
+      All: '',
+    };
+
+    const setCategory = (cat, syncHash = true) => {
+      activeCategory = cat || 'All';
       document.querySelectorAll('[data-catalogue-category]').forEach(b => {
-        b.classList.toggle('active', b.getAttribute('data-catalogue-category') === cat);
+        b.classList.toggle('active', b.getAttribute('data-catalogue-category') === activeCategory);
       });
       paint();
+      if (syncHash) {
+        const next = CAT_TO_HASH[activeCategory];
+        if (next) history.replaceState(null, '', '#' + next);
+        else if (CAT_TO_HASH.hasOwnProperty(activeCategory)) history.replaceState(null, '', location.pathname + location.search);
+      }
     };
 
     document.querySelectorAll('[data-catalogue-category]').forEach(btn => {
-      btn.addEventListener('click', () => setCategory(btn.getAttribute('data-catalogue-category')));
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        setCategory(btn.getAttribute('data-catalogue-category'));
+      });
     });
     catSearch?.addEventListener('input', paint);
 
     const hash = (location.hash || '').replace('#', '');
-    if (hash === 'vapes') setCategory('Vapes');
-    else if (hash === 'chargers') setCategory('Chargers & Power');
-    else if (hash === 'gaming') setCategory('Gaming & Electronics');
-    else if (hash === 'phones') setCategory('Smartphones');
-    else if (hash === 'laptops') setCategory('Tablets & Laptops');
-    else paint();
-
-    if (hash && !['vapes', 'chargers', 'gaming', 'phones', 'laptops'].includes(hash)) {
-      const el = document.getElementById(hash);
-      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+    if (HASH_TO_CAT[hash]) {
+      setCategory(HASH_TO_CAT[hash], false);
+    } else {
+      paint();
+      if (hash) {
+        const el = document.getElementById(hash);
+        if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+      }
     }
   }
 
