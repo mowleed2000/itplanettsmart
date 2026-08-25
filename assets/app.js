@@ -1,7 +1,7 @@
-// IT Planet - Interactive JavaScript
+// IT Planet - Interactive JavaScript Features
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile Menu Toggle
+  // Mobile Navigation Toggle
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navMenu = document.querySelector('.nav-menu');
 
@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const modelData = {
     iphone: ['iPhone 15 Pro Max', 'iPhone 15 Pro', 'iPhone 15', 'iPhone 14 Pro Max', 'iPhone 14', 'iPhone 13 Pro', 'iPhone 13', 'iPhone 12', 'iPhone 11', 'iPhone X / XS'],
-    samsung: ['Galaxy S24 Ultra', 'Galaxy S24+', 'Galaxy S24', 'Galaxy S23 Ultra', 'Galaxy S23', 'Galaxy S22', 'Galaxy Z Fold5', 'Galaxy A54'],
-    pixel: ['Pixel 8 Pro', 'Pixel 8', 'Pixel 7 Pro', 'Pixel 7', 'Pixel 6a'],
+    samsung: ['Galaxy S24 Ultra', 'Galaxy S24+', 'Galaxy S24', 'Galaxy S23 Ultra', 'Galaxy S23', 'Galaxy S22', 'Galaxy Z Fold5', 'Galaxy A54', 'Galaxy A53'],
+    pixel: ['Pixel 8 Pro', 'Pixel 8', 'Pixel Fold', 'Pixel 7 Pro', 'Pixel 7', 'Pixel 6a'],
     ipad: ['iPad Pro 12.9', 'iPad Air 5', 'iPad 10th Gen', 'iPad Mini 6'],
-    laptop: ['MacBook Pro 16"', 'MacBook Air M2', 'Dell XPS 15', 'HP Spectre']
+    laptop: ['MacBook Pro 16"', 'MacBook Air M2', 'Dell XPS 15', 'HP Spectre', 'ASUS ZenBook']
   };
 
   const priceEstimates = {
@@ -55,18 +55,77 @@ document.addEventListener('DOMContentLoaded', () => {
   if (quoteForm) {
     quoteForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const issue = issueSelect.value;
+      const issue = issueSelect ? issueSelect.value : '';
       if (issue && priceEstimates[issue]) {
         quotePrice.textContent = priceEstimates[issue];
-        quoteResult.style.display = 'block';
       } else {
         quotePrice.textContent = '£35 - £95';
-        quoteResult.style.display = 'block';
+      }
+      if (quoteResult) quoteResult.style.display = 'block';
+    });
+  }
+
+  // London Postcode Callout Checker Logic
+  const postcodeForm = document.getElementById('postcode-check-form');
+  const postcodeResult = document.getElementById('postcode-result');
+
+  if (postcodeForm) {
+    postcodeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = document.getElementById('postcode-input').value.trim().toUpperCase();
+      const validPrefixes = ['W12', 'W6', 'W14', 'SW6', 'W1', 'W2', 'W3', 'W4', 'W8', 'W11', 'W9', 'W10', 'SW1', 'WC1', 'WC2', 'EC1', 'NW1', 'NW8'];
+      
+      const isEligible = validPrefixes.some(prefix => input.startsWith(prefix));
+      if (isEligible) {
+        postcodeResult.innerHTML = `
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+            <p style="font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">🎉 Great news! On-Site Callout Available in ${input}</p>
+            <p style="font-size: 0.9rem;">Our mobile repair van can arrive at your location within 60 minutes.</p>
+            <a href="#" class="btn btn-success open-booking-modal" style="margin-top: 10px;">Book Callout Repair Now</a>
+          </div>
+        `;
+      } else {
+        postcodeResult.innerHTML = `
+          <div style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+            <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 5px;">📍 Store Drop-off & Free Courier Available</p>
+            <p style="font-size: 0.9rem;">Visit our Shepherd's Bush store at 134 Uxbridge Rd (W12 8AA) or use our free Mail-In repair service.</p>
+            <a href="our-locations.html" class="btn btn-primary" style="margin-top: 10px;">View Store Directions</a>
+          </div>
+        `;
       }
     });
   }
 
-  // Booking Modal Logic
+  // Trade-In Cash Calculator Logic
+  const tradeinForm = document.getElementById('tradein-calc-form');
+  const tradeinResult = document.getElementById('tradein-result');
+  const tradeinPrice = document.getElementById('tradein-price');
+
+  const tradeinValues = {
+    'iphone15pm': { 'like-new': '£680', 'good': '£590', 'cracked': '£380', 'faulty': '£220' },
+    'iphone15p': { 'like-new': '£590', 'good': '£510', 'cracked': '£320', 'faulty': '£180' },
+    'iphone14pm': { 'like-new': '£490', 'good': '£420', 'cracked': '£260', 'faulty': '£140' },
+    'iphone13': { 'like-new': '£340', 'good': '£290', 'cracked': '£180', 'faulty': '£95' },
+    'samsung-s24u': { 'like-new': '£620', 'good': '£540', 'cracked': '£340', 'faulty': '£190' },
+    'pixel8p': { 'like-new': '£390', 'good': '£320', 'cracked': '£190', 'faulty': '£110' }
+  };
+
+  if (tradeinForm) {
+    tradeinForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const model = document.getElementById('tradein-model').value;
+      const cond = document.getElementById('tradein-condition').value;
+
+      if (tradeinValues[model] && tradeinValues[model][cond]) {
+        tradeinPrice.textContent = tradeinValues[model][cond];
+      } else {
+        tradeinPrice.textContent = '£180 - £450';
+      }
+      if (tradeinResult) tradeinResult.style.display = 'block';
+    });
+  }
+
+  // Booking Modal
   const modal = document.getElementById('booking-modal');
   const openModalBtns = document.querySelectorAll('.open-booking-modal');
   const closeModalBtn = document.querySelector('.modal-close');

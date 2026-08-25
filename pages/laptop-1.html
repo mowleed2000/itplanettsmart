@@ -7,6 +7,15 @@
   <meta name="description" content="Fast MacBook Air, MacBook Pro, Dell, HP, Lenovo & ASUS laptop repairs in Shepherd's Bush London. Screen replacement, battery, keyboard, water damage & SSD upgrades.">
   <link rel="stylesheet" href="../assets/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .model-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
 <body>
   <div class="top-bar">
@@ -34,10 +43,21 @@
     </div>
   </header>
 
-  <section class="hero" style="padding: 50px 0;">
+  <section class="hero" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('../images/macbook-pro.jpg') center/cover no-repeat; padding: 60px 0;">
     <div class="container">
       <h1>MacBook & Laptop <span>Repair Center</span></h1>
       <p>Component level motherboard repair, liquid damage treatment, screen replacement, and speed upgrades for Apple MacBooks and PC Laptops.</p>
+    </div>
+  </section>
+
+  <!-- Laptop Brand Ticker -->
+  <section class="brand-ticker-bar">
+    <div class="container brand-ticker-grid">
+      <span style="font-weight: 700; color: var(--text-muted); font-size: 0.9rem;">Repaired Brands:</span>
+      <img src="../images/Dell.png" class="brand-ticker-item" alt="Dell">
+      <img src="../images/HP.png" class="brand-ticker-item" alt="HP">
+      <img src="../images/Asus.png" class="brand-ticker-item" alt="Asus">
+      <img src="../images/Acer.png" class="brand-ticker-item" alt="Acer">
     </div>
   </section>
 
@@ -45,6 +65,7 @@
     <div class="container">
       <div class="services-grid">
         <div class="service-card">
+          <img src="../images/macbook-pro.jpg" class="model-img" alt="MacBook Repair">
           <h3>Apple MacBook Air & MacBook Pro Repair</h3>
           <p>Retina display replacement, battery service, and logic board repair.</p>
           <ul class="service-features">
@@ -57,6 +78,7 @@
         </div>
 
         <div class="service-card">
+          <img src="../images/Dell.png" class="model-img" style="object-fit: contain; background: #f8fafc; padding: 20px;" alt="PC Laptop Repair">
           <h3>Windows Laptop Repair (Dell, HP, Lenovo, ASUS, Acer)</h3>
           <p>Full hardware diagnostic and fast component replacement.</p>
           <ul class="service-features">
@@ -69,6 +91,7 @@
         </div>
 
         <div class="service-card">
+          <img src="../images/DataRecovery_2.jpg" class="model-img" alt="SSD Speed Upgrade">
           <h3>SSD Upgrade & System Performance Tune-Up</h3>
           <p>Boost your slow laptop speed up to 10x with ultra-fast solid state drive installation.</p>
           <ul class="service-features">
