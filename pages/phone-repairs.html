@@ -9,32 +9,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="top-bar">
+<div class="top-bar">
     <div class="container">
       <div class="top-bar-info">
         <span>📍 134 Uxbridge Road, Shepherd's Bush, London W12 8AA</span>
         <span>📞 <a href="tel:07835393192">07835 393192</a></span>
+        <span>⏰ Mon - Sat: 9:00 AM - 10:00 PM | Sun: 10:00 AM - 8:00 PM</span>
       </div>
-      <div><span>🛡️ 12-Month Repair Warranty</span></div>
+      <div>
+        <span>🛡️ 12-Month Repair Warranty</span>
+      </div>
     </div>
   </div>
 
   <header class="main-header">
     <div class="container nav-container">
-      <a href="../index.html" class="logo">IT <span>PLANET</span></a>
+      <a href="../index.html" class="logo">
+        IT <span>PLANET</span>
+        <span class="logo-badge">REPAIR EXPERTS</span>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+
       <ul class="nav-menu">
-        <li><a href="../index.html" class="nav-link">Home</a></li>
-        <li><a href="all-iphone-models.html" class="nav-link">iPhone</a></li>
-        <li><a href="samsung-mobile.html" class="nav-link">Samsung</a></li>
-        <li><a href="google-pixel.html" class="nav-link">Google Pixel</a></li>
-        <li><a href="phone-repairs.html" class="nav-link" style="color:var(--accent-color);">All Phone Repairs</a></li>
+        <li><a href="mobile-callout-repair.html" class="nav-link nav-highlight-success">Mobile Callout</a></li>
+        <li><a href="iphone-trade-in.html" class="nav-link nav-highlight-warn">Trade-In</a></li>
+        <li class="dropdown">
+          <a href="phone-repairs.html" class="nav-link">Phone Repairs ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="all-iphone-models.html">Apple iPhone</a></li>
+            <li><a href="samsung-mobile.html">Samsung Galaxy</a></li>
+            <li><a href="google-pixel.html">Google Pixel</a></li>
+            <li><a href="huawei-phone-repairs.html">Huawei Repair</a></li>
+            <li><a href="phone-repairs.html">All Brands Repair</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="laptop-1.html" class="nav-link">Computers & Tech ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="ipad.html">iPad & Tablet Repair</a></li>
+            <li><a href="laptop-1.html">MacBook & Laptop Repair</a></li>
+            <li><a href="data-recovery.html">Data Recovery</a></li>
+            <li><a href="watch.html">Apple Watch</a></li>
+          </ul>
+        </li>
+        <li><a href="accessories.html" class="nav-link">Accessories</a></li>
+        <li><a href="our-locations.html" class="nav-link">Store Location</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
-      <a href="#" class="btn btn-primary open-booking-modal">Book Repair</a>
+
+      <div class="header-cta">
+        <a href="#" class="btn btn-primary open-booking-modal">Book a Repair</a>
+      </div>
     </div>
   </header>
 
-  <section class="hero" style="padding: 50px 0;">
+  <section class="hero" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('../images/6_mobiles_on_air.png') center/cover no-repeat; padding: 60px 0;">
     <div class="container">
       <h1>All Smartphone <span>Repairs</span></h1>
       <p>Whatever your phone brand, IT Planet delivers fast 20-30 minute repairs using high grade replacement components.</p>
@@ -45,24 +75,60 @@
     <div class="container">
       <div class="device-grid" style="margin-bottom: 50px;">
         <a href="all-iphone-models.html" class="device-card">
-          <div class="device-icon">📱</div>
+          <img src="../images/iphone-15-pro.jpg" alt="Apple iPhone repair">
           <h4>Apple iPhone</h4>
+          <p>Screen, battery, back glass</p>
         </a>
         <a href="samsung-mobile.html" class="device-card">
-          <div class="device-icon">📲</div>
+          <img src="../images/samsung-s24-ultra.jpg" alt="Samsung Galaxy repair">
           <h4>Samsung Galaxy</h4>
+          <p>S-Series, A-Series, Z Fold</p>
         </a>
         <a href="google-pixel.html" class="device-card">
-          <div class="device-icon">🔍</div>
+          <img src="../images/google-pixel-8.jpg" alt="Google Pixel repair">
           <h4>Google Pixel</h4>
+          <p>Pixel 8, 7, 6 & Fold</p>
+        </a>
+        <a href="huawei-phone-repairs.html" class="device-card">
+          <img src="../images/Huawei_Pura_70_Pro-pfti.png" alt="Huawei phone repair">
+          <h4>Huawei</h4>
+          <p>Pura, Pocket, Nova</p>
         </a>
         <a href="#" class="device-card open-booking-modal">
-          <div class="device-icon">⚡</div>
-          <h4>OnePlus & Xiaomi</h4>
+          <img src="../images/Best_ways_to_repair_your_cracked_iPhone_screen_1.png" alt="Other brand phone repair">
+          <h4>OnePlus, Xiaomi & More</h4>
+          <p>All major Android brands</p>
         </a>
-        <a href="#" class="device-card open-booking-modal">
-          <div class="device-icon">🛠️</div>
-          <h4>Huawei & Motorola</h4>
+      </div>
+
+      <div class="section-header">
+        <span class="section-subtitle">Common Fixes</span>
+        <h2 class="section-title">Popular Repair Services</h2>
+      </div>
+      <div class="issue-icon-grid">
+        <a href="#" class="issue-icon-card open-booking-modal">
+          <img src="../images/Best_ways_to_repair_your_cracked_iPhone_screen_1.png" alt="Screen repair">
+          <h5>Screen Repair</h5>
+        </a>
+        <a href="#" class="issue-icon-card open-booking-modal">
+          <img src="../images/Battery.png" alt="Battery replacement">
+          <h5>Battery Replacement</h5>
+        </a>
+        <a href="#" class="issue-icon-card open-booking-modal">
+          <img src="../images/Back_Glass.png" alt="Back glass repair">
+          <h5>Back Glass</h5>
+        </a>
+        <a href="#" class="issue-icon-card open-booking-modal">
+          <img src="../images/Charing_Port.png" alt="Charging port repair">
+          <h5>Charging Port</h5>
+        </a>
+        <a href="#" class="issue-icon-card open-booking-modal">
+          <img src="../images/Back_camera_5d602fe4-3208-4e08-86b5-02badd594ff2.png" alt="Camera repair">
+          <h5>Camera Lens</h5>
+        </a>
+        <a href="data-recovery.html" class="issue-icon-card">
+          <img src="../images/Data_recovery.png" alt="Data recovery">
+          <h5>Data Recovery</h5>
         </a>
       </div>
     </div>
@@ -70,9 +136,92 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 IT Planet. 134 Uxbridge Road, Shepherd's Bush, London W12 8AA. Phone: 07835 393192</p>
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>IT PLANET</h3>
+          <p>IT Planet is London's trusted tech and mobile repair service provider based in Shepherd's Bush. We repair smartphones, tablets, laptops, and smartwatches with precision engineering.</p>
+          <div class="footer-contact-info">
+            <p>📍 134 Uxbridge Road, Shepherd's Bush, London W12 8AA</p>
+            <p>📞 <a href="tel:07835393192" style="color:#cbd5e1;">07835 393192</a></p>
+            <p>📧 info@itplanet.uk</p>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Phone Repairs</h4>
+          <ul class="footer-links">
+            <li><a href="all-iphone-models.html">iPhone Screen Repair</a></li>
+            <li><a href="samsung-mobile.html">Samsung Galaxy Repair</a></li>
+            <li><a href="google-pixel.html">Google Pixel Repair</a></li>
+            <li><a href="huawei-phone-repairs.html">Huawei Repair</a></li>
+            <li><a href="mobile-callout-repair.html">On-Site Mobile Callout</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Computers & Services</h4>
+          <ul class="footer-links">
+            <li><a href="ipad.html">iPad & Tablet Repair</a></li>
+            <li><a href="laptop-1.html">MacBook Screen Fix</a></li>
+            <li><a href="iphone-trade-in.html">Trade-In Phone For Cash</a></li>
+            <li><a href="data-recovery.html">HDD/SSD Data Recovery</a></li>
+            <li><a href="watch.html">Apple Watch Repair</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company & Help</h4>
+          <ul class="footer-links">
+            <li><a href="about-us1.html">About IT Planet</a></li>
+            <li><a href="our-locations.html">Store Location & Hours</a></li>
+            <li><a href="warranty.html">12-Month Warranty</a></li>
+            <li><a href="business-page.html">B2B Corporate Repairs</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 IT Planet. All rights reserved. 134 Uxbridge Road, London W12 8AA.</p>
+        <div class="footer-policy-links">
+          <a href="../policies/privacy-policy.html">Privacy Policy</a>
+          <a href="../policies/refund-policy.html">Refund Policy</a>
+          <a href="../policies/terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
     </div>
   </footer>
+
+  <div class="modal" id="booking-modal">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close booking form">&times;</button>
+      <h2 style="font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-color);">Book a Repair Reservation</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Reserve your express repair or callout van at IT Planet.</p>
+      <form>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" class="form-control" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" class="form-control" placeholder="07123 456789" required>
+        </div>
+        <div class="form-group">
+          <label>Device & Issue</label>
+          <input type="text" class="form-control" placeholder="e.g. iPhone 14 Cracked Screen" required>
+        </div>
+        <div class="form-group">
+          <label>Service Type</label>
+          <select class="form-control" required>
+            <option value="store">Store Walk-In (134 Uxbridge Rd W12 8AA)</option>
+            <option value="callout">Mobile Callout (We Come To You)</option>
+            <option value="mailin">Mail-In Free Postage</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date & Time</label>
+          <input type="datetime-local" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Repair Booking</button>
+      </form>
+    </div>
+  </div>
   <script src="../assets/app.js"></script>
 </body>
 </html>

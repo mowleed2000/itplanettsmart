@@ -8,8 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', () => {
       navMenu.classList.toggle('active');
+      mobileToggle.setAttribute('aria-expanded', navMenu.classList.contains('active'));
     });
   }
+
+  // Mobile dropdown toggles
+  document.querySelectorAll('.dropdown > .nav-link').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      if (window.innerWidth > 768) return;
+      e.preventDefault();
+      const parent = link.parentElement;
+      document.querySelectorAll('.dropdown.open').forEach((openItem) => {
+        if (openItem !== parent) openItem.classList.remove('open');
+      });
+      parent.classList.toggle('open');
+    });
+  });
 
   // Quote Calculator Logic
   const brandSelect = document.getElementById('calc-brand');
@@ -74,20 +88,21 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const input = document.getElementById('postcode-input').value.trim().toUpperCase();
       const validPrefixes = ['W12', 'W6', 'W14', 'SW6', 'W1', 'W2', 'W3', 'W4', 'W8', 'W11', 'W9', 'W10', 'SW1', 'WC1', 'WC2', 'EC1', 'NW1', 'NW8'];
-      
+
       const isEligible = validPrefixes.some(prefix => input.startsWith(prefix));
       if (isEligible) {
         postcodeResult.innerHTML = `
           <div style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
-            <p style="font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">🎉 Great news! On-Site Callout Available in ${input}</p>
+            <p style="font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">Great news! On-Site Callout Available in ${input}</p>
             <p style="font-size: 0.9rem;">Our mobile repair van can arrive at your location within 60 minutes.</p>
             <a href="#" class="btn btn-success open-booking-modal" style="margin-top: 10px;">Book Callout Repair Now</a>
           </div>
         `;
+        bindModalTriggers(postcodeResult);
       } else {
         postcodeResult.innerHTML = `
           <div style="background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
-            <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 5px;">📍 Store Drop-off & Free Courier Available</p>
+            <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 5px;">Store Drop-off & Free Courier Available</p>
             <p style="font-size: 0.9rem;">Visit our Shepherd's Bush store at 134 Uxbridge Rd (W12 8AA) or use our free Mail-In repair service.</p>
             <a href="our-locations.html" class="btn btn-primary" style="margin-top: 10px;">View Store Directions</a>
           </div>
@@ -127,15 +142,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Booking Modal
   const modal = document.getElementById('booking-modal');
-  const openModalBtns = document.querySelectorAll('.open-booking-modal');
   const closeModalBtn = document.querySelector('.modal-close');
 
-  openModalBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (modal) modal.classList.add('active');
+  function openModal(e) {
+    if (e) e.preventDefault();
+    if (modal) modal.classList.add('active');
+  }
+
+  function bindModalTriggers(scope) {
+    (scope || document).querySelectorAll('.open-booking-modal').forEach(btn => {
+      btn.addEventListener('click', openModal);
     });
-  });
+  }
+
+  bindModalTriggers();
 
   if (closeModalBtn && modal) {
     closeModalBtn.addEventListener('click', () => {
@@ -146,6 +166,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === modal) {
         modal.classList.remove('active');
       }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') modal.classList.remove('active');
     });
   }
 });
